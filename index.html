@@ -224,7 +224,80 @@ a:hover{color:var(--accent)}
   font-weight:600;padding-bottom:1px}
 .foot-wrap .links a:hover{color:var(--accent)}
 .foot-wrap .colophon{margin-top:20px;font-family:'JetBrains Mono',monospace;
-  font-size:10.5px;color:var(--n400);letter-spacing:.16em;text-transform:uppercase}
+  font-size:10.5px;color:var(--n400);letter-spacing:.16em;text-transform:uppercase;
+  cursor:pointer;transition:color .15s}
+.foot-wrap .colophon:hover{color:var(--n600)}
+.foot-wrap .colophon.is-open{color:var(--ink)}
+
+/* Editor's note — hidden until colophon clicked */
+.editors-note{margin:18px auto 0;max-width:50ch;
+  animation:fadeUp .35s ease both}
+.editors-note[hidden]{display:none}
+.editors-note-orn{font-family:'Playfair Display',serif;color:var(--accent);
+  font-size:18px;letter-spacing:.4em;margin-bottom:8px}
+.editors-note-body{margin:0;font-family:'Lora',serif;font-style:italic;
+  font-size:15.5px;line-height:1.55;color:var(--ink);text-align:center}
+.editors-note-body .attr{display:inline-block;margin-top:4px;
+  font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--n500)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── Print · the page actually prints to a real newspaper layout ── */
+@media print {
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  @page{margin:1.4cm 1.6cm}
+  body{background:none!important;background-image:none!important}
+  .wrap{border:none!important;max-width:none!important;min-height:0!important}
+  /* Hide interactive UI */
+  .lang-toggle,.live-dot,.editors-note{display:none!important}
+  /* Compact masthead */
+  .edition-strip{padding:6px 0!important;background:#000!important;color:#fff!important}
+  .mast{padding:18px 0 14px!important}
+  .mast .nameplate{font-size:54px!important;margin-bottom:4px!important}
+  .mast .byline{margin-bottom:12px!important;font-size:10.5px!important}
+  .mast .tag{padding:5px 0!important;font-size:9.5px!important}
+  .mast .dek{font-size:13.5px!important;margin-top:14px!important;max-width:60ch}
+  /* Tighter article */
+  .article{padding:18px 0 8px!important}
+  .article > section + section{margin-top:18px!important;padding-top:14px!important}
+  .section-h h2{font-size:22px!important}
+  .section-h .label{font-size:9px!important}
+  p{font-size:11.5px!important;line-height:1.5!important}
+  .lede p{font-size:13px!important}
+  .lede .dropcap{font-size:48px!important;margin-right:8px!important}
+  .tri li{font-size:11.5px!important;padding:6px 0!important}
+  /* Portfolio: hover effects off, smaller cards */
+  .plate,.plate:hover{background:#fff!important;transform:none!important}
+  .plate .ico,.plate:hover .ico{background:#fff!important;border-color:#111!important}
+  .plate:hover .ico svg .stroke{stroke:#111!important}
+  .plate:hover .ico svg .fill{fill:#111!important}
+  .plate{min-height:0!important;padding:10px 8px!important;page-break-inside:avoid}
+  .plate .nm{font-size:13px!important}
+  .pgrid.lead .plate .nm{font-size:14.5px!important}
+  .plate .desc{font-size:9.5px!important}
+  .plate .ico{width:36px!important;height:36px!important;margin-bottom:5px!important}
+  .plate .ico svg{width:20px!important;height:20px!important}
+  .firm-block{page-break-inside:avoid}
+  .firm-head .firm-name{font-size:15px!important}
+  .firm-head .firm-meta{font-size:9px!important}
+  .tier-label{font-size:9px!important;margin:14px 0 8px!important}
+  /* Tools */
+  .tool{padding:8px 0!important;page-break-inside:avoid}
+  .tool .name{font-size:14px!important}
+  .tool .desc{font-size:11px!important}
+  .tool .url{font-size:9.5px!important}
+  /* Footer */
+  .foot-wrap{padding:14px 0 0!important}
+  .foot-wrap .credo{font-size:11px!important;margin-bottom:8px!important}
+  .foot-wrap .links{font-size:9.5px!important;gap:8px 16px!important}
+  .foot-wrap .colophon{font-size:8.5px!important;cursor:default!important}
+  /* Show hrefs after links so the printed page is referenceable */
+  a[href^="http"]:after,a[href^="mailto:"]:after{
+    content:" (" attr(href) ")";
+    font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:400;
+    color:#737373;letter-spacing:0;text-transform:none;border:none}
+  a{border-bottom:none!important}
+}
 
 /* ── Responsive ────────────────────────────────────────────────── */
 @media (max-width:680px){
@@ -249,10 +322,10 @@ a:hover{color:var(--accent)}
     <button data-lang="zh-CN">简</button><button data-lang="zh-TW">繁</button><button data-lang="en">EN</button><button data-lang="fr">FR</button>
   </span>
 
-  <!-- Edition strip -->
+  <!-- Edition strip — live: edition number + Beijing date / time -->
   <div class="edition-strip">
     <span><span class="live-dot"></span>THE ALDRICH</span>
-    <span data-i18n="strip.right">VOL. I · BEIJING / SHENZHEN</span>
+    <span id="stripRight">VOL. I · NO. — · — · — PEK</span>
   </div>
 
   <!-- Masthead -->
@@ -400,7 +473,11 @@ a:hover{color:var(--accent)}
       <a href="https://github.com/Chen17-sq" target="_blank" rel="noopener">GitHub</a>
       <span style="color:var(--n500)" data-i18n="wechat">WeChat: 18574843907</span>
     </div>
-    <div class="colophon" data-i18n="colophon">The Aldrich · aldrich.fyi · Vol. I · Nothing here is fit to print</div>
+    <div class="colophon" id="colophon" data-i18n="colophon">The Aldrich · aldrich.fyi · Vol. I · Nothing here is fit to print</div>
+    <div class="editors-note" id="editorsNote" hidden>
+      <div class="editors-note-orn">✦</div>
+      <p class="editors-note-body" data-i18n="note.body" data-i18n-html>the best decisions feel like noticing, not choosing.<br><span class="attr">— from a notebook</span></p>
+    </div>
   </footer>
 
 </div>
@@ -408,7 +485,7 @@ a:hover{color:var(--accent)}
 <script>
 // ─── i18n dictionary (en / zh-CN / zh-TW / fr) ─────────────────
 const T = {
-  "strip.right":   {"en":"VOL. I · BEIJING / SHENZHEN","zh-CN":"VOL. I · 北京 / 深圳","zh-TW":"VOL. I · 北京 / 深圳","fr":"VOL. I · PÉKIN / SHENZHEN"},
+  "note.body":     {"en":"the best decisions feel like noticing, not choosing.<br><span class=\"attr\">— from a notebook</span>","zh-CN":"最好的决定，更像是注意到，而非选择。<br><span class=\"attr\">—— 笔记本上的一行</span>","zh-TW":"最好的決定，更像是注意到，而非選擇。<br><span class=\"attr\">—— 筆記本上的一行</span>","fr":"les meilleures décisions ressemblent à un constat, pas à un choix.<br><span class=\"attr\">— d'un carnet</span>"},
   "byline":        {"en":"By <strong>Aldrich Chen</strong> · 陈思蕲","zh-CN":"<strong>陈思蕲</strong> · Aldrich Chen","zh-TW":"<strong>陳思蘄</strong> · Aldrich Chen","fr":"Par <strong>Aldrich Chen</strong> · 陈思蕲"},
   "tag.cities":    {"en":"Beijing / Shenzhen","zh-CN":"北京 / 深圳","zh-TW":"北京 / 深圳","fr":"Pékin / Shenzhen"},
   "tag.tagline":   {"en":"builder by night. investor by day.","zh-CN":"白天投资人，晚上写代码。","zh-TW":"白天投資人，晚上寫代碼。","fr":"constructeur la nuit. investisseur le jour."},
@@ -494,6 +571,52 @@ function setLang(lang) {
 
   document.querySelectorAll("#langToggle button").forEach(b =>
     b.classList.toggle("active", b.dataset.lang === lang));
+
+  // The live edition strip is locale-aware too
+  updateLiveStrip();
+}
+
+// ─── Live edition strip (auto-incrementing No. + Beijing date / time) ───
+const FYI_EPOCH = new Date("2026-04-27T00:00:00+08:00"); // launch midnight 北京
+const LOCALE_MAP = {"en":"en-US","zh-CN":"zh-CN","zh-TW":"zh-TW","fr":"fr-FR"};
+const VOL_LABEL = {
+  "en":    n => `VOL. I · NO. ${n}`,
+  "zh-CN": n => `卷一 · 第 ${n} 期`,
+  "zh-TW": n => `卷一 · 第 ${n} 期`,
+  "fr":    n => `VOL. I · N° ${n}`,
+};
+function editionNumber() {
+  return Math.max(1, Math.floor((Date.now() - FYI_EPOCH.getTime()) / 86400000) + 1);
+}
+function updateLiveStrip() {
+  const el = document.getElementById("stripRight");
+  if (!el) return;
+  const lang = localStorage.getItem(LANG_KEY) || "en";
+  const locale = LOCALE_MAP[lang] || "en-US";
+  const tz = "Asia/Shanghai";
+  const now = new Date();
+  const day = new Intl.DateTimeFormat(locale, {weekday:"short", timeZone:tz}).format(now);
+  const md  = new Intl.DateTimeFormat(locale, {month:"short", day:"numeric", timeZone:tz}).format(now);
+  const t   = new Intl.DateTimeFormat("en-US", {hour:"2-digit", minute:"2-digit", hour12:false, timeZone:tz}).format(now);
+  const vol = (VOL_LABEL[lang] || VOL_LABEL.en)(editionNumber());
+  el.textContent = `${vol} · ${day.toUpperCase()} · ${md.toUpperCase()} · ${t} PEK`;
+}
+setInterval(updateLiveStrip, 60_000);  // tick every minute
+
+// ─── Easter egg: click colophon → reveal editor's note ───
+const colophon = document.getElementById("colophon");
+const note = document.getElementById("editorsNote");
+if (colophon && note) {
+  colophon.addEventListener("click", () => {
+    const open = note.hasAttribute("hidden") ? false : true;
+    if (open) {
+      note.setAttribute("hidden", "");
+      colophon.classList.remove("is-open");
+    } else {
+      note.removeAttribute("hidden");
+      colophon.classList.add("is-open");
+    }
+  });
 }
 
 document.querySelectorAll("#langToggle button").forEach(b =>
