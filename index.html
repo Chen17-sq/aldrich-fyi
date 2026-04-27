@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aldrich FYI · 陈思蕲 / Aldrich Chen — builder by night, investor by day</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Aldrich FYI — the personal masthead of Aldrich Chen (陈思蕲). Tech investor at Hillhouse Investment. Backing founders building AI agents and hardware. Writing small tools after hours.">
+<meta name="author" content="Aldrich Chen · 陈思蕲">
+<link rel="canonical" href="https://aldrich.fyi/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aldrich FYI · 陈思蕲 / Aldrich Chen">
+<meta property="og:description" content="Investing in AI agents & hardware at Hillhouse. Building small things to think with.">
+<meta property="og:url" content="https://aldrich.fyi/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aldrich FYI · 陈思蕲 / Aldrich Chen">
+<meta name="twitter:description" content="Investing in AI agents & hardware. Building small things to think with.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#F9F9F7;
+  --ink:#111111;
+  --rule:#111111;
+  --muted:#E5E5E0;
+  --accent:#CC0000;
+  --n100:#F5F5F5;
+  --n200:#E5E5E5;
+  --n400:#A3A3A3;
+  --n500:#737373;
+  --n600:#525252;
+  --n700:#404040;
+  --max-w:880px;
+}
+
+*{box-sizing:border-box;border-radius:0!important}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+  font-family:'Lora',Georgia,'Songti SC','Source Han Serif SC',serif;
+  font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+body{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23111111' fill-opacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'/%3E%3C/svg%3E");
+}
+
+.serif    { font-family:'Playfair Display','Times New Roman',serif; }
+.body     { font-family:'Lora',Georgia,serif; }
+.sans     { font-family:'Inter','Helvetica Neue','PingFang SC',sans-serif; }
+.mono     { font-family:'JetBrains Mono','Courier New',monospace; }
+
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0;
+  background:var(--paper);border-left:1px solid var(--ink);border-right:1px solid var(--ink);
+  min-height:100vh;display:flex;flex-direction:column}
+
+/* ── Edition strip ─────────────────────────────────────────────── */
+.edition-strip{display:flex;align-items:center;justify-content:space-between;
+  padding:8px 28px;background:var(--ink);color:var(--paper);
+  font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase}
+.edition-strip .live-dot{display:inline-block;width:6px;height:6px;background:var(--accent);
+  margin-right:8px;vertical-align:1px;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── Masthead ──────────────────────────────────────────────────── */
+.mast{padding:48px 28px 28px;border-bottom:4px solid var(--ink);text-align:center}
+.mast .nameplate{font-family:'Playfair Display',serif;font-weight:900;
+  font-size:clamp(48px,9vw,96px);line-height:.92;letter-spacing:-.04em;
+  color:var(--ink);margin:0 0 6px}
+.mast .byline{font-family:'JetBrains Mono',monospace;font-size:11.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--n500);
+  margin:0 0 18px;font-weight:500}
+.mast .byline strong{color:var(--ink);font-weight:700}
+.mast .tag{display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:8px 0;margin-top:6px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);font-weight:500}
+.mast .tag > span{padding:0 14px}
+.mast .tag .center{flex:1;text-align:center;font-style:italic;letter-spacing:0;
+  font-family:'Playfair Display',serif;font-size:13px;font-weight:400;text-transform:none}
+.mast .dek{font-family:'Lora',serif;font-style:italic;font-size:18px;
+  color:var(--n600);text-align:center;margin:22px auto 0;max-width:60ch;line-height:1.5}
+
+/* ── Article body ──────────────────────────────────────────────── */
+.article{padding:36px 36px 12px}
+.article > section + section{margin-top:36px;padding-top:30px;border-top:1px solid var(--muted)}
+.article > section:first-child{padding-top:0}
+
+.section-h{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+.section-h .label{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;
+  letter-spacing:.25em;text-transform:uppercase;color:var(--n500);white-space:nowrap}
+.section-h h2{margin:0;font-family:'Playfair Display',serif;font-weight:900;
+  font-size:30px;letter-spacing:-.5px;color:var(--ink);line-height:1}
+.section-h .rule{flex:1;border-top:1px solid var(--ink);transform:translateY(-6px)}
+
+p{margin:0 0 14px;font-family:'Lora',serif;font-size:16px;line-height:1.75;
+  color:var(--ink);text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+p:last-child{margin-bottom:0}
+em,i{font-style:italic;color:var(--n700)}
+strong{font-weight:700}
+
+a{color:var(--ink);text-decoration:none;
+  border-bottom:2px solid var(--accent);padding-bottom:1px;font-weight:600;
+  transition:color .12s}
+a:hover{color:var(--accent)}
+
+/* ── Lede pullquote ────────────────────────────────────────────── */
+.lede{position:relative;padding:6px 0 0}
+.lede .dropcap{float:left;font-family:'Playfair Display',serif;font-weight:900;
+  font-size:80px;line-height:.78;color:var(--ink);margin:8px 14px 0 0}
+.lede p{font-size:17px;line-height:1.65}
+
+.pullquote{margin:0;padding:18px 24px;border-left:4px solid var(--accent);
+  background:transparent;font-family:'Lora',serif;font-style:italic;
+  font-size:17px;line-height:1.6;color:var(--ink)}
+.pullquote p{margin:0 0 8px;font-style:italic;text-align:left}
+.pullquote p:last-child{margin-bottom:0}
+
+/* ── List style for "Drawn To" ─────────────────────────────────── */
+.tri{margin:6px 0 14px;padding:0;list-style:none}
+.tri li{padding:10px 0;border-bottom:1px solid var(--muted);
+  font-family:'Lora',serif;font-size:16px;line-height:1.55}
+.tri li:last-child{border-bottom:none}
+.tri li::before{content:'— ';color:var(--accent);font-weight:700}
+
+.aside{font-family:'Lora',serif;font-style:italic;font-size:15px;
+  color:var(--n600);text-align:center;margin:18px 0 0}
+
+/* ── Portfolio table ───────────────────────────────────────────── */
+.firm-block{margin-top:18px}
+.firm-block:first-child{margin-top:8px}
+.firm-head{display:flex;align-items:baseline;justify-content:space-between;
+  border-bottom:1px solid var(--ink);padding-bottom:6px;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.firm-head .firm-name{font-family:'Playfair Display',serif;font-weight:700;font-size:19px;
+  color:var(--ink);letter-spacing:-.3px}
+.firm-head .firm-meta{font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.12em;color:var(--n500);text-transform:uppercase;font-weight:500}
+.companies{display:flex;flex-wrap:wrap;gap:6px 0;font-family:'Playfair Display',serif;
+  font-weight:700;font-size:17px;line-height:1.6;color:var(--ink)}
+.companies .c{padding:0 12px;border-right:1px solid var(--ink);white-space:nowrap}
+.companies .c:last-child{border-right:none;padding-right:0}
+.companies .c:first-child{padding-left:0}
+.companies .stealth{color:var(--n400);font-style:italic;font-weight:400}
+.firm-note{margin-top:10px;font-family:'Lora',serif;font-style:italic;
+  font-size:13.5px;color:var(--n600);line-height:1.5}
+
+/* ── Tools / "From the Desk" ───────────────────────────────────── */
+.tool{display:grid;grid-template-columns:1fr;gap:4px;
+  padding:14px 0;border-bottom:1px solid var(--muted)}
+.tool:last-child{border-bottom:none}
+.tool .name{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;
+  letter-spacing:-.3px;color:var(--ink);line-height:1.2}
+.tool .name a{border-bottom:none;font-weight:700;color:var(--ink)}
+.tool .name a:hover{color:var(--accent);border-bottom:2px solid var(--accent)}
+.tool .desc{font-family:'Lora',serif;font-size:14.5px;color:var(--n700);
+  line-height:1.6;margin-top:2px}
+.tool .url{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--n500);
+  margin-top:4px;letter-spacing:.04em}
+.tool .url a{border-bottom:1px solid var(--accent);color:var(--n500);font-weight:500}
+
+/* ── Contact / Footer ──────────────────────────────────────────── */
+.foot-wrap{margin-top:auto;padding:32px 28px 36px;border-top:4px solid var(--ink);
+  text-align:center}
+.foot-wrap .credo{font-family:'Playfair Display',serif;font-style:italic;
+  font-size:15px;color:var(--n500);margin:0 0 18px}
+.foot-wrap .links{display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;
+  color:var(--ink)}
+.foot-wrap .links a{color:var(--ink);border-bottom:2px solid var(--accent);
+  font-weight:600;padding-bottom:1px}
+.foot-wrap .links a:hover{color:var(--accent)}
+.foot-wrap .colophon{margin-top:20px;font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;color:var(--n400);letter-spacing:.16em;text-transform:uppercase}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width:680px){
+  .wrap{border-left:0;border-right:0}
+  .mast{padding:32px 18px 22px}
+  .mast .nameplate{font-size:clamp(38px,11vw,64px)}
+  .mast .tag{flex-direction:column;gap:4px;padding:10px 0}
+  .mast .tag .center{text-align:center}
+  .mast .dek{font-size:16px}
+  .article{padding:28px 18px 8px}
+  .companies{gap:6px 0}
+  .companies .c{padding:0;border-right:none;display:inline-block;width:100%}
+  .companies .c::after{content:'';display:block;border-bottom:1px dotted var(--muted);margin:4px 0}
+  .companies .c:last-child::after{display:none}
+  .foot-wrap{padding:24px 18px 28px}
+  .foot-wrap .links{flex-direction:column;gap:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Edition strip -->
+  <div class="edition-strip">
+    <span><span class="live-dot"></span>THE ALDRICH</span>
+    <span>VOL. I · BEIJING / SHENZHEN</span>
+  </div>
+
+  <!-- Masthead -->
+  <header class="mast">
+    <h1 class="nameplate">Aldrich FYI</h1>
+    <p class="byline">By <strong>Aldrich Chen</strong> · 陈思蕲</p>
+    <div class="tag">
+      <span>Beijing / Shenzhen</span>
+      <span class="center">builder by night. investor by day.</span>
+      <span>UTC+8</span>
+    </div>
+    <p class="dek">backing founders at <strong>Hillhouse Investment</strong> — mostly ai agents and hardware. writing small tools after hours to make my own work a little sharper.</p>
+  </header>
+
+  <!-- Article body -->
+  <main class="article">
+
+    <!-- Lede -->
+    <section class="lede">
+      <p><span class="dropcap">if</span> you're making something you love, say hi. not picky about category. picky about point of view.</p>
+    </section>
+
+    <!-- Between Cities -->
+    <section>
+      <div class="section-h">
+        <span class="label">SECTION A</span>
+        <h2>Between Cities</h2>
+        <span class="rule"></span>
+      </div>
+      <p>beijing and shenzhen, in rotation. occasionally in transit. have laptop, will show up.</p>
+    </section>
+
+    <!-- Drawn To -->
+    <section>
+      <div class="section-h">
+        <span class="label">SECTION B</span>
+        <h2>Drawn To</h2>
+        <span class="rule"></span>
+      </div>
+      <ul class="tri">
+        <li>a product that makes me put down my coffee.</li>
+        <li>a person who changes the temperature of a room.</li>
+        <li>an idea still turning over in my head on the walk home.</li>
+      </ul>
+      <p class="aside">if any of that sounds like something you're making — or something you are — say hi.</p>
+    </section>
+
+    <!-- Selected Portfolio -->
+    <section>
+      <div class="section-h">
+        <span class="label">SECTION C</span>
+        <h2>Selected Portfolio</h2>
+        <span class="rule"></span>
+      </div>
+
+      <div class="firm-block">
+        <div class="firm-head">
+          <span class="firm-name">Hillhouse Investment</span>
+          <span class="firm-meta">Apr 2025 — Now · Early-Stage · AI / Tech</span>
+        </div>
+        <div class="companies">
+          <span class="c">Same.dev</span>
+          <span class="c">Ami.dev</span>
+          <span class="c">Intent</span>
+          <span class="c">Pikaia</span>
+          <span class="c">Trooly</span>
+          <span class="c">Paperboy</span>
+          <span class="c">Raizz</span>
+          <span class="c stealth">+ stealth</span>
+        </div>
+        <p class="firm-note">led / invested. additional executions across Domie, YouWare, Vastnaut, Dify, and others.</p>
+      </div>
+
+      <div class="firm-block">
+        <div class="firm-head">
+          <span class="firm-name">HongShan Capital · 红杉中国</span>
+          <span class="firm-meta">2024 — 2025 · Multi-Stage · AI / Deep Tech</span>
+        </div>
+        <div class="companies">
+          <span class="c">Ouraca (Aibrary)</span>
+          <span class="c stealth">+ selected</span>
+        </div>
+        <p class="firm-note">f.k.a. Sequoia Capital China.</p>
+      </div>
+
+      <p class="aside" style="margin-top:24px">a fuller list, with company links and stage notes, lives on <a href="https://www.linkedin.com/in/aldrich17siqi/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+    </section>
+
+    <!-- From the Desk -->
+    <section>
+      <div class="section-h">
+        <span class="label">SECTION D</span>
+        <h2>From the Desk</h2>
+        <span class="rule"></span>
+      </div>
+      <p style="font-style:italic;color:var(--n600);margin-bottom:18px">a few small tools i wrote to stop annoying myself. published in case they stop annoying you, too.</p>
+
+      <div class="tool">
+        <div class="name"><a href="https://ks.aldrich.fyi" target="_blank" rel="noopener">Kickstarter China Tracker</a></div>
+        <div class="desc">a daily newspaper tracking china-origin consumer hardware projects on Kickstarter — pre-launch, live, recently funded. cron at 08:00 Beijing. editorial design.</div>
+        <div class="url">→ <a href="https://ks.aldrich.fyi" target="_blank" rel="noopener">ks.aldrich.fyi</a></div>
+      </div>
+
+      <div class="tool">
+        <div class="name"><a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">clearscript</a></div>
+        <div class="desc">local-first ASR transcript editor with a compounding terminology library. bring your own model. python + sveltekit + sqlite.</div>
+        <div class="url">→ <a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">github.com/Chen17-sq/clearscript</a></div>
+      </div>
+
+      <div class="tool">
+        <div class="name"><a href="https://github.com/Chen17-sq/OpenChronicle-CC" target="_blank" rel="noopener">OpenChronicle</a> <span style="font-size:13px;color:var(--n500);font-weight:400;font-style:italic">— contributing</span></div>
+        <div class="desc">contributing to Einsia/OpenChronicle via fork. aiming for core contributor status.</div>
+        <div class="url">→ <a href="https://github.com/Chen17-sq/OpenChronicle-CC" target="_blank" rel="noopener">github.com/Chen17-sq/OpenChronicle-CC</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="foot-wrap">
+    <p class="credo">"Non-Consensus Explorer &amp; Dreamer, fueled by pure curiosity and genuine passion."</p>
+    <div class="links">
+      <a href="mailto:hi@aldrich.fyi">hi@aldrich.fyi</a>
+      <a href="https://www.linkedin.com/in/aldrich17siqi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Chen17-sq" target="_blank" rel="noopener">GitHub</a>
+      <span style="color:var(--n500)">WeChat: 18574843907</span>
+    </div>
+    <div class="colophon">The Aldrich · aldrich.fyi · Vol. I · Nothing here is fit to print</div>
+  </footer>
+
+</div>
+</body>
+</html>
