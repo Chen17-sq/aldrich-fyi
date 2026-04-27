@@ -98,8 +98,10 @@ body{
 .section-h .rule{flex:1;border-top:1px solid var(--ink);transform:translateY(-6px)}
 
 p{margin:0 0 14px;font-family:'Lora',serif;font-size:16px;line-height:1.75;
-  color:var(--ink);text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+  color:var(--ink);text-align:left}
 p:last-child{margin-bottom:0}
+/* Justify only the long lede paragraph — short captions look bad with justify */
+.lede p{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 em,i{font-style:italic;color:var(--n700)}
 strong{font-weight:700}
 
@@ -411,12 +413,6 @@ a:hover{color:var(--accent)}
         <div class="name"><a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">clearscript</a></div>
         <div class="desc">local-first ASR transcript editor with a compounding terminology library. bring your own model. python + sveltekit + sqlite.</div>
         <div class="url">→ <a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">github.com/Chen17-sq/clearscript</a></div>
-      </div>
-
-      <div class="tool">
-        <div class="name"><a href="https://github.com/Chen17-sq/OpenChronicle-CC" target="_blank" rel="noopener">OpenChronicle</a> <span style="font-size:13px;color:var(--n500);font-weight:400;font-style:italic">— contributing</span></div>
-        <div class="desc">contributing to Einsia/OpenChronicle via fork. aiming for core contributor status.</div>
-        <div class="url">→ <a href="https://github.com/Chen17-sq/OpenChronicle-CC" target="_blank" rel="noopener">github.com/Chen17-sq/OpenChronicle-CC</a></div>
       </div>
     </section>
 
