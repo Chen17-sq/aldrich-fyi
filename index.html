@@ -472,12 +472,10 @@ const SUPPORTED = ["en","zh-CN","zh-TW","fr"];
 const HTML_LANG_MAP = {"en":"en","zh-CN":"zh-CN","zh-TW":"zh-TW","fr":"fr"};
 
 function detectInitialLang() {
+  // Always default to English on first visit. User toggles 简 / 繁 / FR if
+  // they want; the choice persists in localStorage from then on.
   const stored = localStorage.getItem(LANG_KEY);
   if (stored && SUPPORTED.includes(stored)) return stored;
-  const nav = (navigator.language || "en").toLowerCase();
-  if (nav.startsWith("zh-tw") || nav.startsWith("zh-hk") || nav.startsWith("zh-mo")) return "zh-TW";
-  if (nav.startsWith("zh")) return "zh-CN";
-  if (nav.startsWith("fr")) return "fr";
   return "en";
 }
 
