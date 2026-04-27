@@ -186,6 +186,7 @@ a:hover{color:var(--accent)}
 .plate .nm{font-family:'Playfair Display',serif;font-weight:700;
   font-size:17px;line-height:1.15;letter-spacing:-.2px;color:var(--ink);margin:0}
 .plate .nm .and{color:var(--accent);font-weight:400;margin:0 2px}
+.plate .nm.stealth{font-style:italic;color:var(--n500);font-weight:600;letter-spacing:.04em}
 .pgrid.lead .plate .nm{font-size:19px}
 .plate .desc{margin-top:5px;font-family:'Lora',serif;font-style:italic;
   font-size:11.5px;line-height:1.4;color:var(--n600);max-width:18ch}
@@ -395,6 +396,8 @@ a:hover{color:var(--accent)}
           <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="12" y="5" width="6" height="11" rx="3"/><path class="stroke" d="M9 14a6 6 0 0 0 12 0M15 20v4M11 24h8"/></svg></span><p class="nm">Pikaia<span class="and">&amp;</span>Trooly</p><p class="desc" data-i18n="cd.pikaia">voice-agent user research</p></div>
           <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="4" y="6" width="22" height="18"/><line class="stroke" x1="4" y1="11" x2="26" y2="11"/><line class="stroke" x1="7" y1="14.5" x2="14" y2="14.5"/><line class="stroke" x1="7" y1="17.5" x2="14" y2="17.5"/><line class="stroke" x1="7" y1="20.5" x2="14" y2="20.5"/><rect class="stroke" x="16" y="14" width="8" height="7"/></svg></span><p class="nm">Paperboy</p><p class="desc" data-i18n="cd.paperboy">ambient desktop · before you ask</p></div>
           <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M22 18a8 8 0 1 1-9-12 7 7 0 0 0 9 12z"/><path class="stroke" d="M19 8h4l-4 5h4"/></svg></span><p class="nm">Raizz</p><p class="desc" data-i18n="cd.raizz">AI sleep · hardware + software</p></div>
+          <!-- Stealth Mode · AI Search Infra -->
+          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="12.5" cy="12.5" r="7"/><line class="stroke" x1="17.7" y1="17.7" x2="24" y2="24" stroke-width="2.4"/><circle class="fill" cx="9.5" cy="12.5" r=".9"/><circle class="fill" cx="12.5" cy="12.5" r=".9"/><circle class="fill" cx="15.5" cy="12.5" r=".9"/></svg></span><p class="nm stealth" data-i18n="cd.stealth.name">Stealth</p><p class="desc" data-i18n="cd.stealth.desc">AI search infra</p></div>
         </div>
 
         <div class="tier-label" data-i18n="tier.exec">Executed</div>
@@ -525,6 +528,8 @@ const T = {
   "cd.pikaia":     {"en":"voice-agent user research","zh-CN":"语音 Agent · 用户调研","zh-TW":"語音 Agent · 用戶調研","fr":"recherche utilisateur · agent vocal"},
   "cd.paperboy":   {"en":"ambient desktop · before you ask","zh-CN":"环境式桌面 · 先你一步","zh-TW":"環境式桌面 · 先你一步","fr":"bureau ambiant · avant que vous demandiez"},
   "cd.raizz":      {"en":"AI sleep · hardware + software","zh-CN":"AI 睡眠 · 软硬一体","zh-TW":"AI 睡眠 · 軟硬一體","fr":"sommeil IA · hardware + software"},
+  "cd.stealth.name":{"en":"Stealth","zh-CN":"未公开","zh-TW":"未公開","fr":"Stealth"},
+  "cd.stealth.desc":{"en":"AI search infra","zh-CN":"AI 搜索基础设施","zh-TW":"AI 搜尋基礎設施","fr":"infra de recherche IA"},
   "cd.domie":      {"en":"AI calendar device","zh-CN":"AI 日历机","zh-TW":"AI 日曆機","fr":"hardware calendrier IA"},
   "cd.youware":    {"en":"AI coding platform","zh-CN":"AI 编码平台","zh-TW":"AI 編碼平台","fr":"plateforme de code IA"},
   "cd.picaa":      {"en":"AI phone case","zh-CN":"AI 手机壳","zh-TW":"AI 手機殼","fr":"coque de téléphone IA"},
