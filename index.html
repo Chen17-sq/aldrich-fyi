@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Aldrich FYI · 陈思蕲 / Aldrich Chen — builder by night, investor by day</title>
+<title>Aldrich FYI · 陈思蕲 / Aldrich Chen</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Aldrich FYI — the personal masthead of Aldrich Chen (陈思蕲). Tech investor at Hillhouse Investment. Backing founders building AI agents and hardware. Writing small tools after hours.">
+<meta name="description" content="Aldrich FYI — the personal masthead of Aldrich Chen (陈思蕲). Tech investor at Hillhouse Investment.">
 <meta name="author" content="Aldrich Chen · 陈思蕲">
 <link rel="canonical" href="https://aldrich.fyi/">
 
@@ -12,10 +12,6 @@
 <meta property="og:title" content="Aldrich FYI · 陈思蕲 / Aldrich Chen">
 <meta property="og:description" content="Investing in AI agents & hardware at Hillhouse. Building small things to think with.">
 <meta property="og:url" content="https://aldrich.fyi/">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Aldrich FYI · 陈思蕲 / Aldrich Chen">
-<meta name="twitter:description" content="Investing in AI agents & hardware. Building small things to think with.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +31,10 @@
   --n600:#525252;
   --n700:#404040;
   --max-w:880px;
+  --c-red:#CC0000;
+  --c-amber:#E8A33D;
+  --c-teal:#3A7872;
+  --c-coral:#C9645C;
 }
 
 *{box-sizing:border-box;border-radius:0!important}
@@ -47,14 +47,26 @@ body{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23111111' fill-opacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'/%3E%3C/svg%3E");
 }
 
-.serif    { font-family:'Playfair Display','Times New Roman',serif; }
-.body     { font-family:'Lora',Georgia,serif; }
-.sans     { font-family:'Inter','Helvetica Neue','PingFang SC',sans-serif; }
-.mono     { font-family:'JetBrains Mono','Courier New',monospace; }
+.serif{font-family:'Playfair Display','Times New Roman',serif}
+.body{font-family:'Lora',Georgia,serif}
+.sans{font-family:'Inter','Helvetica Neue','PingFang SC',sans-serif}
+.mono{font-family:'JetBrains Mono','Courier New',monospace}
 
 .wrap{max-width:var(--max-w);margin:0 auto;padding:0;
   background:var(--paper);border-left:1px solid var(--ink);border-right:1px solid var(--ink);
-  min-height:100vh;display:flex;flex-direction:column}
+  min-height:100vh;display:flex;flex-direction:column;position:relative}
+
+/* ── Lang toggle (top right, fixed within wrap) ───────────────── */
+.lang-toggle{position:absolute;top:42px;right:18px;z-index:10;display:inline-flex;
+  border:1px solid var(--ink);background:var(--paper);
+  font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase}
+.lang-toggle button{background:transparent;border:none;font-family:inherit;font-size:inherit;
+  letter-spacing:inherit;font-weight:inherit;color:var(--ink);
+  padding:6px 9px;cursor:pointer;transition:all .12s;line-height:1}
+.lang-toggle button:hover{background:var(--n100)}
+.lang-toggle button.active{background:var(--ink);color:var(--paper)}
+.lang-toggle button + button{border-left:1px solid var(--ink)}
 
 /* ── Edition strip ─────────────────────────────────────────────── */
 .edition-strip{display:flex;align-items:center;justify-content:space-between;
@@ -100,7 +112,6 @@ body{
 p{margin:0 0 14px;font-family:'Lora',serif;font-size:16px;line-height:1.75;
   color:var(--ink);text-align:left}
 p:last-child{margin-bottom:0}
-/* Justify only the long lede paragraph — short captions look bad with justify */
 .lede p{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
 em,i{font-style:italic;color:var(--n700)}
 strong{font-weight:700}
@@ -115,12 +126,6 @@ a:hover{color:var(--accent)}
 .lede .dropcap{float:left;font-family:'Playfair Display',serif;font-weight:900;
   font-size:80px;line-height:.78;color:var(--ink);margin:8px 14px 0 0}
 .lede p{font-size:17px;line-height:1.65}
-
-.pullquote{margin:0;padding:18px 24px;border-left:4px solid var(--accent);
-  background:transparent;font-family:'Lora',serif;font-style:italic;
-  font-size:17px;line-height:1.6;color:var(--ink)}
-.pullquote p{margin:0 0 8px;font-style:italic;text-align:left}
-.pullquote p:last-child{margin-bottom:0}
 
 /* ── List style for "Drawn To" ─────────────────────────────────── */
 .tri{margin:6px 0 14px;padding:0;list-style:none}
@@ -142,25 +147,15 @@ a:hover{color:var(--accent)}
 .firm-head .firm-meta{font-family:'JetBrains Mono',monospace;font-size:11px;
   letter-spacing:.12em;color:var(--n500);text-transform:uppercase;font-weight:500}
 
-/* Tier label */
 .tier-label{font-family:'Inter',sans-serif;font-size:10px;font-weight:700;
   letter-spacing:.28em;text-transform:uppercase;color:var(--n500);
   margin:22px 0 12px;display:flex;align-items:center;gap:10px}
 .tier-label::after{content:'';flex:1;border-top:1px solid var(--muted)}
 
-/* Grid of company plate cards */
 .pgrid{display:grid;gap:0;
   border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
 .pgrid.lead{grid-template-columns:repeat(3,1fr)}
 .pgrid.exec{grid-template-columns:repeat(4,1fr)}
-
-/* Print-color palette for hover stamp effect */
-:root{
-  --c-red:#CC0000;
-  --c-amber:#E8A33D;
-  --c-teal:#3A7872;
-  --c-coral:#C9645C;
-}
 
 .plate{display:flex;flex-direction:column;align-items:center;text-align:center;
   padding:18px 14px 16px;
@@ -180,7 +175,6 @@ a:hover{color:var(--accent)}
 .plate .ico svg .fill{fill:var(--ink);transition:fill .25s ease}
 .plate .ico svg .acc{stroke:var(--accent);transition:stroke .25s ease}
 
-/* Hover · stamp effect — icon container floods with color, line work goes paper-cream */
 .plate.t-red:hover   .ico{background:var(--c-red);  border-color:var(--c-red)}
 .plate.t-amber:hover .ico{background:var(--c-amber);border-color:var(--c-amber)}
 .plate.t-teal:hover  .ico{background:var(--c-teal); border-color:var(--c-teal)}
@@ -196,7 +190,6 @@ a:hover{color:var(--accent)}
 .plate .desc{margin-top:5px;font-family:'Lora',serif;font-style:italic;
   font-size:11.5px;line-height:1.4;color:var(--n600);max-width:18ch}
 
-/* Mobile collapse */
 @media (max-width:680px){
   .pgrid.lead{grid-template-columns:repeat(2,1fr)}
   .pgrid.exec{grid-template-columns:repeat(2,1fr)}
@@ -236,16 +229,13 @@ a:hover{color:var(--accent)}
 /* ── Responsive ────────────────────────────────────────────────── */
 @media (max-width:680px){
   .wrap{border-left:0;border-right:0}
+  .lang-toggle{position:static;margin:10px auto 0;display:inline-flex}
   .mast{padding:32px 18px 22px}
   .mast .nameplate{font-size:clamp(38px,11vw,64px)}
   .mast .tag{flex-direction:column;gap:4px;padding:10px 0}
   .mast .tag .center{text-align:center}
   .mast .dek{font-size:16px}
   .article{padding:28px 18px 8px}
-  .companies{gap:6px 0}
-  .companies .c{padding:0;border-right:none;display:inline-block;width:100%}
-  .companies .c::after{content:'';display:block;border-bottom:1px dotted var(--muted);margin:4px 0}
-  .companies .c:last-child::after{display:none}
   .foot-wrap{padding:24px 18px 28px}
   .foot-wrap .links{flex-direction:column;gap:10px}
 }
@@ -254,22 +244,27 @@ a:hover{color:var(--accent)}
 <body>
 <div class="wrap">
 
+  <!-- Lang toggle -->
+  <span class="lang-toggle" id="langToggle">
+    <button data-lang="zh-CN">简</button><button data-lang="zh-TW">繁</button><button data-lang="en">EN</button><button data-lang="fr">FR</button>
+  </span>
+
   <!-- Edition strip -->
   <div class="edition-strip">
     <span><span class="live-dot"></span>THE ALDRICH</span>
-    <span>VOL. I · BEIJING / SHENZHEN</span>
+    <span data-i18n="strip.right">VOL. I · BEIJING / SHENZHEN</span>
   </div>
 
   <!-- Masthead -->
   <header class="mast">
     <h1 class="nameplate">Aldrich FYI</h1>
-    <p class="byline">By <strong>Aldrich Chen</strong> · 陈思蕲</p>
+    <p class="byline" data-i18n="byline" data-i18n-html>By <strong>Aldrich Chen</strong> · 陈思蕲</p>
     <div class="tag">
-      <span>Beijing / Shenzhen</span>
-      <span class="center">builder by night. investor by day.</span>
+      <span data-i18n="tag.cities">Beijing / Shenzhen</span>
+      <span class="center" data-i18n="tag.tagline">builder by night. investor by day.</span>
       <span>UTC+8</span>
     </div>
-    <p class="dek">backing founders at <strong>Hillhouse Investment</strong> — mostly ai agents and hardware. writing small tools after hours to make my own work a little sharper.</p>
+    <p class="dek" data-i18n="dek" data-i18n-html>backing founders at <strong>Hillhouse Investment</strong> — mostly ai agents and hardware. writing small tools after hours to make my own work a little sharper.</p>
   </header>
 
   <!-- Article body -->
@@ -277,39 +272,39 @@ a:hover{color:var(--accent)}
 
     <!-- Lede -->
     <section class="lede">
-      <p><span class="dropcap">if</span> you're making something you love, say hi. not picky about category. picky about point of view.</p>
+      <p data-i18n="lede" data-i18n-html><span class="dropcap">if</span> you're making something you love, say hi. not picky about category. picky about point of view.</p>
     </section>
 
     <!-- Between Cities -->
     <section>
       <div class="section-h">
         <span class="label">SECTION A</span>
-        <h2>Between Cities</h2>
+        <h2 data-i18n="secA.title">Between Cities</h2>
         <span class="rule"></span>
       </div>
-      <p>beijing and shenzhen, in rotation. occasionally in transit. have laptop, will show up.</p>
+      <p data-i18n="secA.body">beijing and shenzhen, in rotation. occasionally in transit. have laptop, will show up.</p>
     </section>
 
     <!-- Drawn To -->
     <section>
       <div class="section-h">
         <span class="label">SECTION B</span>
-        <h2>Drawn To</h2>
+        <h2 data-i18n="secB.title">Drawn To</h2>
         <span class="rule"></span>
       </div>
       <ul class="tri">
-        <li>a product that makes me put down my coffee.</li>
-        <li>a person who changes the temperature of a room.</li>
-        <li>an idea still turning over in my head on the walk home.</li>
+        <li data-i18n="drawn.1">a product that makes me put down my coffee.</li>
+        <li data-i18n="drawn.2">a person who changes the temperature of a room.</li>
+        <li data-i18n="drawn.3">an idea still turning over in my head on the walk home.</li>
       </ul>
-      <p class="aside">if any of that sounds like something you're making — or something you are — say hi.</p>
+      <p class="aside" data-i18n="drawn.aside">if any of that sounds like something you're making — or something you are — say hi.</p>
     </section>
 
     <!-- Selected Portfolio -->
     <section>
       <div class="section-h">
         <span class="label">SECTION C</span>
-        <h2>Selected Portfolio</h2>
+        <h2 data-i18n="secC.title">Selected Portfolio</h2>
         <span class="rule"></span>
       </div>
 
@@ -317,45 +312,30 @@ a:hover{color:var(--accent)}
       <div class="firm-block">
         <div class="firm-head">
           <span class="firm-name">Hillhouse Investment</span>
-          <span class="firm-meta">Apr 2025 — Now · Early-Stage · AI / Tech</span>
+          <span class="firm-meta" data-i18n="hh.meta">Apr 2025 — Now · Early-Stage · AI / Tech</span>
         </div>
 
-        <div class="tier-label">Led / Invested</div>
+        <div class="tier-label" data-i18n="tier.led">Led / Invested</div>
         <div class="pgrid lead">
-          <!-- Same.dev & Ami.dev — AI Coding -->
-          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><polyline class="stroke" points="10,9 5,15 10,21"/><polyline class="stroke" points="20,9 25,15 20,21"/><line class="stroke" x1="17" y1="7" x2="13" y2="23"/></svg></span><p class="nm">Same.dev<span class="and">&amp;</span>Ami.dev</p><p class="desc">AI coding agents</p></div>
-          <!-- Intent — AI IM / AI WhatsApp -->
-          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M5 8h20v12H17l-5 4v-4H5z"/><circle class="fill" cx="11" cy="14" r="1.3"/><circle class="fill" cx="15" cy="14" r="1.3"/><circle class="fill" cx="19" cy="14" r="1.3"/></svg></span><p class="nm">Intent</p><p class="desc">AI messaging · WhatsApp-native</p></div>
-          <!-- Pikaia & Trooly — voice agent user research -->
-          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="12" y="5" width="6" height="11" rx="3"/><path class="stroke" d="M9 14a6 6 0 0 0 12 0M15 20v4M11 24h8"/></svg></span><p class="nm">Pikaia<span class="and">&amp;</span>Trooly</p><p class="desc">voice-agent user research</p></div>
-          <!-- Paperboy -->
-          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="4" y="6" width="22" height="18"/><line class="stroke" x1="4" y1="11" x2="26" y2="11"/><line class="stroke" x1="7" y1="14.5" x2="14" y2="14.5"/><line class="stroke" x1="7" y1="17.5" x2="14" y2="17.5"/><line class="stroke" x1="7" y1="20.5" x2="14" y2="20.5"/><rect class="stroke" x="16" y="14" width="8" height="7"/></svg></span><p class="nm">Paperboy</p><p class="desc">ambient desktop · before you ask</p></div>
-          <!-- Raizz — AI sleep -->
-          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M22 18a8 8 0 1 1-9-12 7 7 0 0 0 9 12z"/><path class="stroke" d="M19 8h4l-4 5h4"/></svg></span><p class="nm">Raizz</p><p class="desc">AI sleep · hardware + software</p></div>
+          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><polyline class="stroke" points="10,9 5,15 10,21"/><polyline class="stroke" points="20,9 25,15 20,21"/><line class="stroke" x1="17" y1="7" x2="13" y2="23"/></svg></span><p class="nm">Same.dev<span class="and">&amp;</span>Ami.dev</p><p class="desc" data-i18n="cd.same">AI coding agents</p></div>
+          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M5 8h20v12H17l-5 4v-4H5z"/><circle class="fill" cx="11" cy="14" r="1.3"/><circle class="fill" cx="15" cy="14" r="1.3"/><circle class="fill" cx="19" cy="14" r="1.3"/></svg></span><p class="nm">Intent</p><p class="desc" data-i18n="cd.intent">AI messaging · WhatsApp-native</p></div>
+          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="12" y="5" width="6" height="11" rx="3"/><path class="stroke" d="M9 14a6 6 0 0 0 12 0M15 20v4M11 24h8"/></svg></span><p class="nm">Pikaia<span class="and">&amp;</span>Trooly</p><p class="desc" data-i18n="cd.pikaia">voice-agent user research</p></div>
+          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="4" y="6" width="22" height="18"/><line class="stroke" x1="4" y1="11" x2="26" y2="11"/><line class="stroke" x1="7" y1="14.5" x2="14" y2="14.5"/><line class="stroke" x1="7" y1="17.5" x2="14" y2="17.5"/><line class="stroke" x1="7" y1="20.5" x2="14" y2="20.5"/><rect class="stroke" x="16" y="14" width="8" height="7"/></svg></span><p class="nm">Paperboy</p><p class="desc" data-i18n="cd.paperboy">ambient desktop · before you ask</p></div>
+          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M22 18a8 8 0 1 1-9-12 7 7 0 0 0 9 12z"/><path class="stroke" d="M19 8h4l-4 5h4"/></svg></span><p class="nm">Raizz</p><p class="desc" data-i18n="cd.raizz">AI sleep · hardware + software</p></div>
         </div>
 
-        <div class="tier-label">Executed</div>
+        <div class="tier-label" data-i18n="tier.exec">Executed</div>
         <div class="pgrid exec">
-          <!-- Domie — AI calendar device -->
-          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="5" y="7" width="20" height="18"/><line class="stroke" x1="5" y1="12" x2="25" y2="12"/><line class="stroke" x1="9" y1="5" x2="9" y2="9"/><line class="stroke" x1="21" y1="5" x2="21" y2="9"/><path class="stroke" d="M17 17l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg></span><p class="nm">Domie</p><p class="desc">AI calendar device</p></div>
-          <!-- YouWare — AI coding platform -->
-          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="4" y="6" width="22" height="18"/><line class="stroke" x1="4" y1="11" x2="26" y2="11"/><circle class="fill" cx="7" cy="8.5" r=".7"/><circle class="fill" cx="9.5" cy="8.5" r=".7"/><polyline class="stroke" points="11,16 14,19 11,22"/><line class="stroke" x1="16" y1="22" x2="20" y2="22"/></svg></span><p class="nm">YouWare</p><p class="desc">AI coding platform</p></div>
-          <!-- Picaa — AI phone case -->
-          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="9" y="3" width="12" height="24" rx="2"/><line class="stroke" x1="13" y1="6" x2="17" y2="6"/><circle class="fill" cx="15" cy="23.5" r=".8"/><path class="stroke" d="M20 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg></span><p class="nm">Picaa</p><p class="desc">AI phone case</p></div>
-          <!-- Vastnaut — exoskeleton -->
-          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="15" cy="6" r="2.5"/><line class="stroke" x1="15" y1="9" x2="15" y2="20"/><line class="stroke" x1="15" y1="13" x2="9" y2="11"/><line class="stroke" x1="15" y1="13" x2="21" y2="11"/><line class="stroke" x1="9" y1="11" x2="7" y2="16"/><line class="stroke" x1="21" y1="11" x2="23" y2="16"/><line class="stroke" x1="15" y1="20" x2="11" y2="26"/><line class="stroke" x1="15" y1="20" x2="19" y2="26"/></svg></span><p class="nm">Vastnaut</p><p class="desc">exoskeleton</p></div>
-          <!-- Scientific — personal CRM / second brain -->
-          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><circle class="fill" cx="15" cy="15" r="2"/><circle class="stroke" cx="6" cy="7" r="1.6"/><circle class="stroke" cx="24" cy="7" r="1.6"/><circle class="stroke" cx="6" cy="23" r="1.6"/><circle class="stroke" cx="24" cy="23" r="1.6"/><line class="stroke" x1="13.5" y1="13.5" x2="7" y2="8"/><line class="stroke" x1="16.5" y1="13.5" x2="23" y2="8"/><line class="stroke" x1="13.5" y1="16.5" x2="7" y2="22"/><line class="stroke" x1="16.5" y1="16.5" x2="23" y2="22"/></svg></span><p class="nm">Scientific</p><p class="desc">personal CRM · second brain</p></div>
-          <!-- BubbleFlow — spatial display speaker -->
-          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="5" y="6" width="20" height="14"/><circle class="stroke" cx="15" cy="13" r="4"/><circle class="stroke" cx="15" cy="13" r="1.5"/><line class="stroke" x1="11" y1="24" x2="19" y2="24"/><line class="stroke" x1="13" y1="20" x2="13" y2="24"/><line class="stroke" x1="17" y1="20" x2="17" y2="24"/></svg></span><p class="nm">BubbleFlow</p><p class="desc">spatial display speaker</p></div>
-          <!-- Dify — AI workflow -->
-          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="6" cy="9" r="2.5"/><circle class="stroke" cx="6" cy="21" r="2.5"/><circle class="stroke" cx="24" cy="15" r="2.5"/><line class="stroke" x1="8.5" y1="9" x2="21.5" y2="14"/><line class="stroke" x1="8.5" y1="21" x2="21.5" y2="16"/></svg></span><p class="nm">Dify</p><p class="desc">agentic workflow platform</p></div>
-          <!-- Garment — premium washer-dryer -->
-          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="6" y="4" width="18" height="22"/><circle class="stroke" cx="15" cy="16" r="6"/><circle class="stroke" cx="15" cy="16" r="2.5"/><circle class="fill" cx="9.5" cy="7.5" r=".8"/><circle class="fill" cx="12" cy="7.5" r=".8"/></svg></span><p class="nm">Garment</p><p class="desc">premium washer-dryer</p></div>
-          <!-- RGB — anime content platform -->
-          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M15 4l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></span><p class="nm">RGB</p><p class="desc">next-gen content platform</p></div>
-          <!-- Mazu — AI Xiaohongshu -->
-          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="4" y="4" width="10" height="10"/><rect class="stroke" x="16" y="4" width="10" height="10"/><rect class="stroke" x="4" y="16" width="10" height="10"/><rect class="stroke" x="16" y="16" width="10" height="10"/><circle class="fill" cx="9" cy="9" r="1.6"/></svg></span><p class="nm">Mazu</p><p class="desc">next-gen interactive content</p></div>
+          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="5" y="7" width="20" height="18"/><line class="stroke" x1="5" y1="12" x2="25" y2="12"/><line class="stroke" x1="9" y1="5" x2="9" y2="9"/><line class="stroke" x1="21" y1="5" x2="21" y2="9"/><path class="stroke" d="M17 17l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg></span><p class="nm">Domie</p><p class="desc" data-i18n="cd.domie">AI calendar device</p></div>
+          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="4" y="6" width="22" height="18"/><line class="stroke" x1="4" y1="11" x2="26" y2="11"/><circle class="fill" cx="7" cy="8.5" r=".7"/><circle class="fill" cx="9.5" cy="8.5" r=".7"/><polyline class="stroke" points="11,16 14,19 11,22"/><line class="stroke" x1="16" y1="22" x2="20" y2="22"/></svg></span><p class="nm">YouWare</p><p class="desc" data-i18n="cd.youware">AI coding platform</p></div>
+          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="9" y="3" width="12" height="24" rx="2"/><line class="stroke" x1="13" y1="6" x2="17" y2="6"/><circle class="fill" cx="15" cy="23.5" r=".8"/><path class="stroke" d="M20 8l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg></span><p class="nm">Picaa</p><p class="desc" data-i18n="cd.picaa">AI phone case</p></div>
+          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="15" cy="6" r="2.5"/><line class="stroke" x1="15" y1="9" x2="15" y2="20"/><line class="stroke" x1="15" y1="13" x2="9" y2="11"/><line class="stroke" x1="15" y1="13" x2="21" y2="11"/><line class="stroke" x1="9" y1="11" x2="7" y2="16"/><line class="stroke" x1="21" y1="11" x2="23" y2="16"/><line class="stroke" x1="15" y1="20" x2="11" y2="26"/><line class="stroke" x1="15" y1="20" x2="19" y2="26"/></svg></span><p class="nm">Vastnaut</p><p class="desc" data-i18n="cd.vastnaut">exoskeleton</p></div>
+          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><circle class="fill" cx="15" cy="15" r="2"/><circle class="stroke" cx="6" cy="7" r="1.6"/><circle class="stroke" cx="24" cy="7" r="1.6"/><circle class="stroke" cx="6" cy="23" r="1.6"/><circle class="stroke" cx="24" cy="23" r="1.6"/><line class="stroke" x1="13.5" y1="13.5" x2="7" y2="8"/><line class="stroke" x1="16.5" y1="13.5" x2="23" y2="8"/><line class="stroke" x1="13.5" y1="16.5" x2="7" y2="22"/><line class="stroke" x1="16.5" y1="16.5" x2="23" y2="22"/></svg></span><p class="nm">Scientific</p><p class="desc" data-i18n="cd.scientific">personal CRM · second brain</p></div>
+          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="5" y="6" width="20" height="14"/><circle class="stroke" cx="15" cy="13" r="4"/><circle class="stroke" cx="15" cy="13" r="1.5"/><line class="stroke" x1="11" y1="24" x2="19" y2="24"/><line class="stroke" x1="13" y1="20" x2="13" y2="24"/><line class="stroke" x1="17" y1="20" x2="17" y2="24"/></svg></span><p class="nm">BubbleFlow</p><p class="desc" data-i18n="cd.bubbleflow">spatial display speaker</p></div>
+          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="6" cy="9" r="2.5"/><circle class="stroke" cx="6" cy="21" r="2.5"/><circle class="stroke" cx="24" cy="15" r="2.5"/><line class="stroke" x1="8.5" y1="9" x2="21.5" y2="14"/><line class="stroke" x1="8.5" y1="21" x2="21.5" y2="16"/></svg></span><p class="nm">Dify</p><p class="desc" data-i18n="cd.dify">agentic workflow platform</p></div>
+          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="6" y="4" width="18" height="22"/><circle class="stroke" cx="15" cy="16" r="6"/><circle class="stroke" cx="15" cy="16" r="2.5"/><circle class="fill" cx="9.5" cy="7.5" r=".8"/><circle class="fill" cx="12" cy="7.5" r=".8"/></svg></span><p class="nm">Garment</p><p class="desc" data-i18n="cd.garment">premium washer-dryer</p></div>
+          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M15 4l3 8 8 1-6 6 2 8-7-4-7 4 2-8-6-6 8-1z"/></svg></span><p class="nm">RGB</p><p class="desc" data-i18n="cd.rgb">next-gen content platform</p></div>
+          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="4" y="4" width="10" height="10"/><rect class="stroke" x="16" y="4" width="10" height="10"/><rect class="stroke" x="4" y="16" width="10" height="10"/><rect class="stroke" x="16" y="16" width="10" height="10"/><circle class="fill" cx="9" cy="9" r="1.6"/></svg></span><p class="nm">Mazu</p><p class="desc" data-i18n="cd.mazu">next-gen interactive content</p></div>
         </div>
       </div>
 
@@ -363,55 +343,48 @@ a:hover{color:var(--accent)}
       <div class="firm-block">
         <div class="firm-head">
           <span class="firm-name">HongShan Capital Group</span>
-          <span class="firm-meta">2024 — 2025 · Multi-Stage · AI / Deep Tech</span>
+          <span class="firm-meta" data-i18n="hs.meta">2024 — 2025 · Multi-Stage · AI / Deep Tech</span>
         </div>
 
-        <div class="tier-label">Led / Invested</div>
+        <div class="tier-label" data-i18n="tier.led">Led / Invested</div>
         <div class="pgrid lead">
-          <!-- Ouraca / Aibrary — AI learning + media -->
-          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M5 18a10 8 0 0 1 20 0"/><rect class="stroke" x="3" y="17" width="5" height="7" rx="1.5"/><rect class="stroke" x="22" y="17" width="5" height="7" rx="1.5"/><line class="stroke" x1="11" y1="6" x2="19" y2="6"/><line class="stroke" x1="11" y1="9" x2="19" y2="9"/></svg></span><p class="nm">Ouraca · Aibrary</p><p class="desc">personalized AI learning companion</p></div>
+          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><path class="stroke" d="M5 18a10 8 0 0 1 20 0"/><rect class="stroke" x="3" y="17" width="5" height="7" rx="1.5"/><rect class="stroke" x="22" y="17" width="5" height="7" rx="1.5"/><line class="stroke" x1="11" y1="6" x2="19" y2="6"/><line class="stroke" x1="11" y1="9" x2="19" y2="9"/></svg></span><p class="nm">Ouraca · Aibrary</p><p class="desc" data-i18n="cd.aibrary">personalized AI learning companion</p></div>
         </div>
 
-        <div class="tier-label">Executed</div>
+        <div class="tier-label" data-i18n="tier.exec">Executed</div>
         <div class="pgrid exec">
-          <!-- Math Magic / 数美万物 -->
-          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><polyline class="stroke" points="8,7 22,7 14,15 22,23 8,23"/></svg></span><p class="nm">Math Magic · 数美万物</p><p class="desc">AI 3D model generation</p></div>
-          <!-- DeepLink — AI LinkedIn -->
-          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="11" cy="10" r="3"/><circle class="stroke" cx="20" cy="10" r="2.5"/><path class="stroke" d="M5 22a6 6 0 0 1 12 0"/><path class="stroke" d="M16 22a5 5 0 0 1 9 0"/><path class="stroke acc" d="M14 13l3 3-3 3"/></svg></span><p class="nm">DeepLink</p><p class="desc">AI LinkedIn</p></div>
-          <!-- RingConn — smart ring -->
-          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="15" cy="15" r="9"/><circle class="stroke" cx="15" cy="15" r="5"/><circle class="fill acc" cx="15" cy="6.5" r="1.4"/></svg></span><p class="nm">RingConn</p><p class="desc">smart ring</p></div>
-          <!-- Luxshare — 立讯精密 -->
-          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="8" y="8" width="14" height="14"/><rect class="stroke" x="12" y="12" width="6" height="6"/><line class="stroke" x1="11" y1="4" x2="11" y2="8"/><line class="stroke" x1="15" y1="4" x2="15" y2="8"/><line class="stroke" x1="19" y1="4" x2="19" y2="8"/><line class="stroke" x1="11" y1="22" x2="11" y2="26"/><line class="stroke" x1="15" y1="22" x2="15" y2="26"/><line class="stroke" x1="19" y1="22" x2="19" y2="26"/><line class="stroke" x1="4" y1="11" x2="8" y2="11"/><line class="stroke" x1="4" y1="15" x2="8" y2="15"/><line class="stroke" x1="4" y1="19" x2="8" y2="19"/><line class="stroke" x1="22" y1="11" x2="26" y2="11"/><line class="stroke" x1="22" y1="15" x2="26" y2="15"/><line class="stroke" x1="22" y1="19" x2="26" y2="19"/></svg></span><p class="nm">Luxshare · 立讯精密</p><p class="desc">precision electronics</p></div>
-          <!-- IGNIS — AI for Science / RL env -->
-          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><circle class="fill" cx="15" cy="15" r="1.6"/><ellipse class="stroke" cx="15" cy="15" rx="11" ry="4"/><ellipse class="stroke" cx="15" cy="15" rx="11" ry="4" transform="rotate(60 15 15)"/><ellipse class="stroke" cx="15" cy="15" rx="11" ry="4" transform="rotate(-60 15 15)"/></svg></span><p class="nm">IGNIS</p><p class="desc">AI for Science · RL env</p></div>
-          <!-- AgileX — robotics -->
-          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="7" y="9" width="16" height="13" rx="2"/><circle class="fill" cx="12" cy="14" r="1.4"/><circle class="fill" cx="18" cy="14" r="1.4"/><line class="stroke" x1="11" y1="19" x2="19" y2="19"/><line class="stroke" x1="15" y1="5" x2="15" y2="9"/><circle class="fill acc" cx="15" cy="4" r="1.2"/><line class="stroke" x1="4" y1="14" x2="7" y2="14"/><line class="stroke" x1="23" y1="14" x2="26" y2="14"/></svg></span><p class="nm">AgileX</p><p class="desc">embodied AI · robotics</p></div>
+          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><polyline class="stroke" points="8,7 22,7 14,15 22,23 8,23"/></svg></span><p class="nm">Math Magic · 数美万物</p><p class="desc" data-i18n="cd.mathmagic">AI 3D model generation</p></div>
+          <div class="plate t-amber"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="11" cy="10" r="3"/><circle class="stroke" cx="20" cy="10" r="2.5"/><path class="stroke" d="M5 22a6 6 0 0 1 12 0"/><path class="stroke" d="M16 22a5 5 0 0 1 9 0"/><path class="stroke acc" d="M14 13l3 3-3 3"/></svg></span><p class="nm">DeepLink</p><p class="desc" data-i18n="cd.deeplink">AI LinkedIn</p></div>
+          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><circle class="stroke" cx="15" cy="15" r="9"/><circle class="stroke" cx="15" cy="15" r="5"/><circle class="fill acc" cx="15" cy="6.5" r="1.4"/></svg></span><p class="nm">RingConn</p><p class="desc" data-i18n="cd.ringconn">smart ring</p></div>
+          <div class="plate t-coral"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="8" y="8" width="14" height="14"/><rect class="stroke" x="12" y="12" width="6" height="6"/><line class="stroke" x1="11" y1="4" x2="11" y2="8"/><line class="stroke" x1="15" y1="4" x2="15" y2="8"/><line class="stroke" x1="19" y1="4" x2="19" y2="8"/><line class="stroke" x1="11" y1="22" x2="11" y2="26"/><line class="stroke" x1="15" y1="22" x2="15" y2="26"/><line class="stroke" x1="19" y1="22" x2="19" y2="26"/><line class="stroke" x1="4" y1="11" x2="8" y2="11"/><line class="stroke" x1="4" y1="15" x2="8" y2="15"/><line class="stroke" x1="4" y1="19" x2="8" y2="19"/><line class="stroke" x1="22" y1="11" x2="26" y2="11"/><line class="stroke" x1="22" y1="15" x2="26" y2="15"/><line class="stroke" x1="22" y1="19" x2="26" y2="19"/></svg></span><p class="nm">Luxshare · 立讯精密</p><p class="desc" data-i18n="cd.luxshare">precision electronics</p></div>
+          <div class="plate t-red"><span class="ico"><svg viewBox="0 0 30 30"><circle class="fill" cx="15" cy="15" r="1.6"/><ellipse class="stroke" cx="15" cy="15" rx="11" ry="4"/><ellipse class="stroke" cx="15" cy="15" rx="11" ry="4" transform="rotate(60 15 15)"/><ellipse class="stroke" cx="15" cy="15" rx="11" ry="4" transform="rotate(-60 15 15)"/></svg></span><p class="nm">IGNIS</p><p class="desc" data-i18n="cd.ignis">AI for Science · RL env</p></div>
+          <div class="plate t-teal"><span class="ico"><svg viewBox="0 0 30 30"><rect class="stroke" x="7" y="9" width="16" height="13" rx="2"/><circle class="fill" cx="12" cy="14" r="1.4"/><circle class="fill" cx="18" cy="14" r="1.4"/><line class="stroke" x1="11" y1="19" x2="19" y2="19"/><line class="stroke" x1="15" y1="5" x2="15" y2="9"/><circle class="fill acc" cx="15" cy="4" r="1.2"/><line class="stroke" x1="4" y1="14" x2="7" y2="14"/><line class="stroke" x1="23" y1="14" x2="26" y2="14"/></svg></span><p class="nm">AgileX</p><p class="desc" data-i18n="cd.agilex">embodied AI · robotics</p></div>
         </div>
 
-        <p class="aside" style="margin-top:18px;font-size:12px;color:var(--n500)">f.k.a. Sequoia Capital China.</p>
+        <p class="aside" style="margin-top:18px;font-size:12px;color:var(--n500)" data-i18n="hs.fka">f.k.a. Sequoia Capital China.</p>
       </div>
 
-      <p class="aside" style="margin-top:24px">a fuller list lives on <a href="https://www.linkedin.com/in/aldrich17siqi/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      <p class="aside" style="margin-top:24px" data-i18n="portfolio.aside" data-i18n-html>a fuller list lives on <a href="https://www.linkedin.com/in/aldrich17siqi/" target="_blank" rel="noopener">LinkedIn</a>.</p>
     </section>
 
     <!-- From the Desk -->
     <section>
       <div class="section-h">
         <span class="label">SECTION D</span>
-        <h2>From the Desk</h2>
+        <h2 data-i18n="secD.title">From the Desk</h2>
         <span class="rule"></span>
       </div>
-      <p style="font-style:italic;color:var(--n600);margin-bottom:18px">a few small tools i wrote to stop annoying myself. published in case they stop annoying you, too.</p>
+      <p style="font-style:italic;color:var(--n600);margin-bottom:18px" data-i18n="desk.intro">a few small tools i wrote to stop annoying myself. published in case they stop annoying you, too.</p>
 
       <div class="tool">
         <div class="name"><a href="https://ks.aldrich.fyi" target="_blank" rel="noopener">Kickstarter China Tracker</a></div>
-        <div class="desc">a daily newspaper tracking china-origin consumer hardware projects on Kickstarter — pre-launch, live, recently funded. cron at 08:00 Beijing. editorial design.</div>
+        <div class="desc" data-i18n="ks.desc">a daily newspaper tracking china-origin consumer hardware projects on Kickstarter — pre-launch, live, recently funded. cron at 08:00 Beijing. editorial design.</div>
         <div class="url">→ <a href="https://ks.aldrich.fyi" target="_blank" rel="noopener">ks.aldrich.fyi</a></div>
       </div>
 
       <div class="tool">
         <div class="name"><a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">clearscript</a></div>
-        <div class="desc">local-first ASR transcript editor with a compounding terminology library. bring your own model. python + sveltekit + sqlite.</div>
+        <div class="desc" data-i18n="cs.desc">local-first ASR transcript editor with a compounding terminology library. bring your own model. python + sveltekit + sqlite.</div>
         <div class="url">→ <a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">github.com/Chen17-sq/clearscript</a></div>
       </div>
     </section>
@@ -420,16 +393,116 @@ a:hover{color:var(--accent)}
 
   <!-- Footer -->
   <footer class="foot-wrap">
-    <p class="credo">"Non-Consensus Explorer &amp; Dreamer, fueled by pure curiosity and genuine passion."</p>
+    <p class="credo" data-i18n="credo">"Non-Consensus Explorer &amp; Dreamer, fueled by pure curiosity and genuine passion."</p>
     <div class="links">
       <a href="mailto:hi@aldrich.fyi">hi@aldrich.fyi</a>
       <a href="https://www.linkedin.com/in/aldrich17siqi/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/Chen17-sq" target="_blank" rel="noopener">GitHub</a>
-      <span style="color:var(--n500)">WeChat: 18574843907</span>
+      <span style="color:var(--n500)" data-i18n="wechat">WeChat: 18574843907</span>
     </div>
-    <div class="colophon">The Aldrich · aldrich.fyi · Vol. I · Nothing here is fit to print</div>
+    <div class="colophon" data-i18n="colophon">The Aldrich · aldrich.fyi · Vol. I · Nothing here is fit to print</div>
   </footer>
 
 </div>
+
+<script>
+// ─── i18n dictionary (en / zh-CN / zh-TW / fr) ─────────────────
+const T = {
+  "strip.right":   {"en":"VOL. I · BEIJING / SHENZHEN","zh-CN":"VOL. I · 北京 / 深圳","zh-TW":"VOL. I · 北京 / 深圳","fr":"VOL. I · PÉKIN / SHENZHEN"},
+  "byline":        {"en":"By <strong>Aldrich Chen</strong> · 陈思蕲","zh-CN":"<strong>陈思蕲</strong> · Aldrich Chen","zh-TW":"<strong>陳思蘄</strong> · Aldrich Chen","fr":"Par <strong>Aldrich Chen</strong> · 陈思蕲"},
+  "tag.cities":    {"en":"Beijing / Shenzhen","zh-CN":"北京 / 深圳","zh-TW":"北京 / 深圳","fr":"Pékin / Shenzhen"},
+  "tag.tagline":   {"en":"builder by night. investor by day.","zh-CN":"白天投资人，晚上写代码。","zh-TW":"白天投資人，晚上寫代碼。","fr":"constructeur la nuit. investisseur le jour."},
+  "dek":           {"en":"backing founders at <strong>Hillhouse Investment</strong> — mostly ai agents and hardware. writing small tools after hours to make my own work a little sharper.","zh-CN":"在 <strong>Hillhouse Investment</strong> 投资 AI agent 和硬件方向的早期项目。下班后写点小工具，让自己工作得更顺手。","zh-TW":"在 <strong>Hillhouse Investment</strong> 投資 AI agent 和硬體方向的早期項目。下班後寫點小工具，讓自己工作得更順手。","fr":"soutenir des fondateurs chez <strong>Hillhouse Investment</strong> — surtout des agents IA et du hardware. j'écris de petits outils après le travail pour me simplifier la vie."},
+
+  "lede":          {"en":"<span class=\"dropcap\">if</span> you're making something you love, say hi. not picky about category. picky about point of view.","zh-CN":"<span class=\"dropcap\">如</span>果你在做你热爱的东西，打个招呼吧。不挑赛道，挑视角。","zh-TW":"<span class=\"dropcap\">如</span>果你在做你熱愛的東西，打個招呼吧。不挑賽道，挑視角。","fr":"<span class=\"dropcap\">si</span> vous fabriquez quelque chose que vous aimez, dites bonjour. peu regardant sur la catégorie. très regardant sur le point de vue."},
+
+  "secA.title":    {"en":"Between Cities","zh-CN":"两城之间","zh-TW":"兩城之間","fr":"Entre Deux Villes"},
+  "secA.body":     {"en":"beijing and shenzhen, in rotation. occasionally in transit. have laptop, will show up.","zh-CN":"北京和深圳轮转，偶尔在路上。带着电脑，随时出现。","zh-TW":"北京和深圳輪轉，偶爾在路上。帶著電腦，隨時出現。","fr":"beijing et shenzhen, en alternance. occasionnellement en transit. j'ai un ordinateur portable, je serai là."},
+
+  "secB.title":    {"en":"Drawn To","zh-CN":"我喜欢什么","zh-TW":"我喜歡什麼","fr":"Ce Qui Me Captive"},
+  "drawn.1":       {"en":"a product that makes me put down my coffee.","zh-CN":"一个让我放下咖啡的产品。","zh-TW":"一個讓我放下咖啡的產品。","fr":"un produit qui me fait poser ma tasse de café."},
+  "drawn.2":       {"en":"a person who changes the temperature of a room.","zh-CN":"一个能改变房间温度的人。","zh-TW":"一個能改變房間溫度的人。","fr":"une personne qui change la température d'une pièce."},
+  "drawn.3":       {"en":"an idea still turning over in my head on the walk home.","zh-CN":"一个走回家路上还在脑子里翻滚的想法。","zh-TW":"一個走回家路上還在腦子裡翻滾的想法。","fr":"une idée qui me trotte encore dans la tête sur le chemin du retour."},
+  "drawn.aside":   {"en":"if any of that sounds like something you're making — or something you are — say hi.","zh-CN":"如果上面任何一条像你正在做的事情，或者像你这个人，来打个招呼吧。","zh-TW":"如果上面任何一條像你正在做的事情，或者像你這個人，來打個招呼吧。","fr":"si l'un de ces points ressemble à ce que vous faites — ou à qui vous êtes — dites bonjour."},
+
+  "secC.title":    {"en":"Selected Portfolio","zh-CN":"部分投资","zh-TW":"部分投資","fr":"Portefeuille Choisi"},
+  "tier.led":      {"en":"Led / Invested","zh-CN":"主导 / 参投","zh-TW":"主導 / 參投","fr":"Dirigé / Investi"},
+  "tier.exec":     {"en":"Executed","zh-CN":"协助参与","zh-TW":"協助參與","fr":"Exécuté"},
+  "hh.meta":       {"en":"Apr 2025 — Now · Early-Stage · AI / Tech","zh-CN":"2025年4月至今 · 早期 · AI / 科技","zh-TW":"2025年4月至今 · 早期 · AI / 科技","fr":"Avr 2025 — Présent · Amorçage · IA / Tech"},
+  "hs.meta":       {"en":"2024 — 2025 · Multi-Stage · AI / Deep Tech","zh-CN":"2024-2025 · 多阶段 · AI / 深科技","zh-TW":"2024-2025 · 多階段 · AI / 深科技","fr":"2024-2025 · Multi-stade · IA / Deep Tech"},
+  "hs.fka":        {"en":"f.k.a. Sequoia Capital China.","zh-CN":"原红杉资本中国。","zh-TW":"原紅杉資本中國。","fr":"anciennement Sequoia Capital China."},
+  "portfolio.aside":{"en":"a fuller list lives on <a href=\"https://www.linkedin.com/in/aldrich17siqi/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a>.","zh-CN":"完整列表在 <a href=\"https://www.linkedin.com/in/aldrich17siqi/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a>。","zh-TW":"完整列表在 <a href=\"https://www.linkedin.com/in/aldrich17siqi/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a>。","fr":"la liste complète est sur <a href=\"https://www.linkedin.com/in/aldrich17siqi/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a>."},
+
+  "secD.title":    {"en":"From the Desk","zh-CN":"桌面上","zh-TW":"桌面上","fr":"Depuis Le Bureau"},
+  "desk.intro":    {"en":"a few small tools i wrote to stop annoying myself. published in case they stop annoying you, too.","zh-CN":"写了几个小工具，主要是为了不让自己烦自己。开放出来，万一也能让你少烦点。","zh-TW":"寫了幾個小工具，主要是為了不讓自己煩自己。開放出來，萬一也能讓你少煩點。","fr":"quelques petits outils écrits pour cesser de m'agacer moi-même. publiés au cas où ils cesseraient aussi de vous agacer."},
+  "ks.desc":       {"en":"a daily newspaper tracking china-origin consumer hardware projects on Kickstarter — pre-launch, live, recently funded. cron at 08:00 Beijing. editorial design.","zh-CN":"一份每日报纸，追踪 Kickstarter 上中国背景的消费硬件项目 —— 未发布、在筹、已结束。每天北京时间 08:00 自动更新。编辑设计。","zh-TW":"一份每日報紙，追蹤 Kickstarter 上中國背景的消費硬體項目 —— 未發布、在籌、已結束。每天北京時間 08:00 自動更新。編輯設計。","fr":"un quotidien qui suit les projets de hardware grand-public d'origine chinoise sur Kickstarter — pré-lancement, en cours, récemment financés. cron à 08:00 Pékin. design éditorial."},
+  "cs.desc":       {"en":"local-first ASR transcript editor with a compounding terminology library. bring your own model. python + sveltekit + sqlite.","zh-CN":"本地优先的 ASR 转录编辑器，带累积式术语库。自带模型。Python + SvelteKit + SQLite。","zh-TW":"本地優先的 ASR 轉錄編輯器，帶累積式術語庫。自帶模型。Python + SvelteKit + SQLite。","fr":"éditeur de transcriptions ASR local-first avec une bibliothèque terminologique cumulative. apportez votre propre modèle. python + sveltekit + sqlite."},
+
+  "credo":         {"en":"\"Non-Consensus Explorer & Dreamer, fueled by pure curiosity and genuine passion.\"","zh-CN":"「非共识的探索者与做梦的人，全凭好奇与真诚。」","zh-TW":"「非共識的探索者與做夢的人，全憑好奇與真誠。」","fr":"« Explorateur Non-Consensuel & Rêveur, animé par la pure curiosité et la passion sincère. »"},
+  "wechat":        {"en":"WeChat: 18574843907","zh-CN":"微信: 18574843907","zh-TW":"微信: 18574843907","fr":"WeChat: 18574843907"},
+  "colophon":      {"en":"The Aldrich · aldrich.fyi · Vol. I · Nothing here is fit to print","zh-CN":"The Aldrich · aldrich.fyi · Vol. I · 此处所载，皆不宜付印","zh-TW":"The Aldrich · aldrich.fyi · Vol. I · 此處所載，皆不宜付印","fr":"The Aldrich · aldrich.fyi · Vol. I · Rien ici n'est digne d'être imprimé"},
+
+  // ── Company descriptions ─────────────────────────────────────
+  "cd.same":       {"en":"AI coding agents","zh-CN":"AI 编码 Agent","zh-TW":"AI 編碼 Agent","fr":"agents IA pour coder"},
+  "cd.intent":     {"en":"AI messaging · WhatsApp-native","zh-CN":"AI IM · WhatsApp 原生","zh-TW":"AI IM · WhatsApp 原生","fr":"messagerie IA · natif WhatsApp"},
+  "cd.pikaia":     {"en":"voice-agent user research","zh-CN":"语音 Agent · 用户调研","zh-TW":"語音 Agent · 用戶調研","fr":"recherche utilisateur · agent vocal"},
+  "cd.paperboy":   {"en":"ambient desktop · before you ask","zh-CN":"环境式桌面 · 先你一步","zh-TW":"環境式桌面 · 先你一步","fr":"bureau ambiant · avant que vous demandiez"},
+  "cd.raizz":      {"en":"AI sleep · hardware + software","zh-CN":"AI 睡眠 · 软硬一体","zh-TW":"AI 睡眠 · 軟硬一體","fr":"sommeil IA · hardware + software"},
+  "cd.domie":      {"en":"AI calendar device","zh-CN":"AI 日历机","zh-TW":"AI 日曆機","fr":"hardware calendrier IA"},
+  "cd.youware":    {"en":"AI coding platform","zh-CN":"AI 编码平台","zh-TW":"AI 編碼平台","fr":"plateforme de code IA"},
+  "cd.picaa":      {"en":"AI phone case","zh-CN":"AI 手机壳","zh-TW":"AI 手機殼","fr":"coque de téléphone IA"},
+  "cd.vastnaut":   {"en":"exoskeleton","zh-CN":"外骨骼","zh-TW":"外骨骼","fr":"exosquelette"},
+  "cd.scientific": {"en":"personal CRM · second brain","zh-CN":"个人 CRM · 第二大脑","zh-TW":"個人 CRM · 第二大腦","fr":"CRM personnel · second cerveau"},
+  "cd.bubbleflow": {"en":"spatial display speaker","zh-CN":"空间屏音响","zh-TW":"空間屏音響","fr":"enceinte à écran spatial"},
+  "cd.dify":       {"en":"agentic workflow platform","zh-CN":"Agent 工作流平台","zh-TW":"Agent 工作流平台","fr":"plateforme de workflow agentique"},
+  "cd.garment":    {"en":"premium washer-dryer","zh-CN":"高端洗烘一体机","zh-TW":"高端洗烘一體機","fr":"lave-linge séchant haut de gamme"},
+  "cd.rgb":        {"en":"next-gen content platform","zh-CN":"下一代内容平台","zh-TW":"下一代內容平台","fr":"plateforme de contenu nouvelle-génération"},
+  "cd.mazu":       {"en":"next-gen interactive content","zh-CN":"下一代互动内容","zh-TW":"下一代互動內容","fr":"contenu interactif nouvelle-génération"},
+  "cd.aibrary":    {"en":"personalized AI learning companion","zh-CN":"个性化 AI 学习陪伴","zh-TW":"個性化 AI 學習陪伴","fr":"compagnon d'apprentissage IA personnalisé"},
+  "cd.mathmagic":  {"en":"AI 3D model generation","zh-CN":"AI 3D 模型生成","zh-TW":"AI 3D 模型生成","fr":"génération de modèles 3D par IA"},
+  "cd.deeplink":   {"en":"AI LinkedIn","zh-CN":"AI 版 LinkedIn","zh-TW":"AI 版 LinkedIn","fr":"LinkedIn par IA"},
+  "cd.ringconn":   {"en":"smart ring","zh-CN":"智能戒指","zh-TW":"智能戒指","fr":"bague connectée"},
+  "cd.luxshare":   {"en":"precision electronics","zh-CN":"精密电子代工","zh-TW":"精密電子代工","fr":"électronique de précision"},
+  "cd.ignis":      {"en":"AI for Science · RL env","zh-CN":"AI for Science · 强化学习环境","zh-TW":"AI for Science · 強化學習環境","fr":"IA pour la Science · env RL"},
+  "cd.agilex":     {"en":"embodied AI · robotics","zh-CN":"具身智能 · 机器人","zh-TW":"具身智能 · 機器人","fr":"IA incarnée · robotique"},
+};
+
+const LANG_KEY = "aldrich-lang";
+const SUPPORTED = ["en","zh-CN","zh-TW","fr"];
+const HTML_LANG_MAP = {"en":"en","zh-CN":"zh-CN","zh-TW":"zh-TW","fr":"fr"};
+
+function detectInitialLang() {
+  const stored = localStorage.getItem(LANG_KEY);
+  if (stored && SUPPORTED.includes(stored)) return stored;
+  const nav = (navigator.language || "en").toLowerCase();
+  if (nav.startsWith("zh-tw") || nav.startsWith("zh-hk") || nav.startsWith("zh-mo")) return "zh-TW";
+  if (nav.startsWith("zh")) return "zh-CN";
+  if (nav.startsWith("fr")) return "fr";
+  return "en";
+}
+
+function setLang(lang) {
+  if (!SUPPORTED.includes(lang)) lang = "en";
+  localStorage.setItem(LANG_KEY, lang);
+  document.documentElement.lang = HTML_LANG_MAP[lang];
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    const t = T[key] && T[key][lang];
+    if (t === undefined) return;
+    if (el.hasAttribute("data-i18n-html")) el.innerHTML = t;
+    else el.textContent = t;
+  });
+
+  document.querySelectorAll("#langToggle button").forEach(b =>
+    b.classList.toggle("active", b.dataset.lang === lang));
+}
+
+document.querySelectorAll("#langToggle button").forEach(b =>
+  b.addEventListener("click", () => setLang(b.dataset.lang)));
+
+setLang(detectInitialLang());
+</script>
+
 </body>
 </html>
