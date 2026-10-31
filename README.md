@@ -14,7 +14,7 @@ The `design/mono-color-20261031` branch implements the approved blue-and-terraco
 - All 24 portfolio entries, three tools, contact links, and four original languages retained.
 - Brief entrance transitions and restrained paper movement; reduced-motion preferences respected.
 
-The second review revision restores portfolio-card lift and icon inversion, tool-link feedback and the editor-note entrance. Content enters once while scrolling without depending on JavaScript for visibility. Lower-page backgrounds vary between pale-blue grid paper, warm paper and a cobalt footer, with a decorative Beijing–Shenzhen route and restrained halftone accents.
+The third review revision follows the approved full-page editorial direction: one continuous paper background, a three-column introduction, open investment directories with firm information in the margin, horizontal tool entries with typographic covers, and a large closing statement with a folded-paper echo. Company dates, roles, descriptions and groupings come from the original website, not the generated art-direction mockup. Portfolio lift, icon inversion, tool feedback and one-time content entrances remain, with reduced-motion support.
 
 Design reference: [mono-color-skill](https://github.com/yanliudesign/mono-color-skill). The folded-paper illustration was generated for this site from the approved visual concept.
 

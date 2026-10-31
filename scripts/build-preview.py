@@ -27,12 +27,12 @@ archive = output.with_suffix('.zip')
 with ZipFile(archive, 'w', ZIP_DEFLATED) as package:
     package.write(output, output.name)
     package.writestr('READ-ME.txt',
-        'Aldrich FYI — 第二版预览\n\n'
+        'Aldrich FYI — 第三版预览\n\n'
         '解压后，用 Chrome 或 Safari 打开 Aldrich-FYI-preview.html。\n'
         '图片、样式和脚本都已包含在 HTML 中，无需安装。\n'
         '联网时会加载设计字体；离线时使用系统字体。\n\n'
-        '本版恢复投资卡片上浮、图标变色和工具链接反馈；加入正文滚动入场、'
-        '双城路线装饰、分区背景和蓝色页脚。\n'
+        '本版按认可的整页视觉方向重排：三栏介绍、开放投资目录、三个工具封面和折页结尾。\n'
+        '保留原始24个项目、3个工具、年份、项目归属和四语内容；保留卡片和滚动动效。\n'
         '如系统开启「减少动态效果」，位移动效会关闭。\n\n'
         '此文件仅供确认设计，aldrich.fyi 线上未更新。\n')
 with ZipFile(archive) as package:

@@ -1,6 +1,7 @@
 
 // ─── i18n dictionary (en / zh-CN / zh-TW / fr) ─────────────────
 const T = {
+  "note.label":{"en":"A note","zh-CN":"写在前面","zh-TW":"寫在前面","fr":"Une note"},
   "skip":{"en":"Skip to content","zh-CN":"跳至正文","zh-TW":"跳至正文","fr":"Aller au contenu"},
   "read.on":{"en":"Read on","zh-CN":"继续阅读","zh-TW":"繼續閱讀","fr":"Lire la suite"},
   "hero.tagline":{"en":"builder by night.<br>investor by day.","zh-CN":"白天投资人，<br>晚上写代码。","zh-TW":"白天投資人，<br>晚上寫代碼。","fr":"constructeur la nuit.<br>investisseur le jour."},
@@ -97,7 +98,22 @@ function setLang(lang) {
     const key = el.dataset.i18n;
     const t = T[key] && T[key][lang];
     if (t === undefined) return;
-    if (el.hasAttribute("data-i18n-html")) el.innerHTML = t;
+    if (key === "lede") {
+      const sentenceEnd = t.search(/[。.!?]/);
+      el.innerHTML = sentenceEnd < 0 ? t : `<span class="invitation-main">${t.slice(0,sentenceEnd + 1)}</span><span class="invitation-tail">${t.slice(sentenceEnd + 1)}</span>`;
+    }
+    else if (key === "credo") {
+      const separator = t.indexOf(lang.startsWith("zh") ? "，" : ",");
+      if(separator < 0) { el.textContent = t; return; }
+      const head = document.createElement("span");
+      const tail = document.createElement("span");
+      head.className = "credo-head";
+      tail.className = "credo-tail";
+      head.textContent = t.slice(0,separator + 1);
+      tail.textContent = t.slice(separator + 1);
+      el.replaceChildren(head,tail);
+    }
+    else if (el.hasAttribute("data-i18n-html")) el.innerHTML = t;
     else el.textContent = t;
   });
 
