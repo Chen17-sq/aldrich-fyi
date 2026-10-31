@@ -14,7 +14,9 @@ The `design/mono-color-20261031` branch implements the approved blue-and-terraco
 - All 24 portfolio entries, three tools, contact links, and four original languages retained.
 - Brief entrance transitions and restrained paper movement; reduced-motion preferences respected.
 
-The fourth review revision strengthens the approved full-page editorial direction with larger chapter titles, distinct lead-investment and execution layouts, wider project covers and a stronger closing statement. It corrects tablet-column density, introductory alignment, tight Latin tracking and Chinese spacing. Company dates, roles, descriptions and groupings come from the original website, not the generated art-direction mockup. Portfolio lift, icon inversion, tool feedback and one-time content entrances remain, with reduced-motion support.
+The fifth review revision keeps the approved masthead and editorial layout, and gives each tool a distinct, clickable cover: an abstract newspaper for Kickstarter China Tracker, a waveform and editing lines for clearscript, and a connected memory graph for OpenPersona. These are decorative illustrations of their purpose, not product screenshots or real data. Each has a brief, one-time entrance gesture and a restrained hover/focus response. Desktop firm labels stay in view while reading their entries; a thin line tracks progress through the article. The closing email link has its own prominent row.
+
+The larger chapter titles, distinct investment/execution hierarchy, embedded fonts and Chinese spacing from revision four are retained. Company dates, roles, descriptions and groupings come from the original website, not the generated art-direction mockup. Portfolio lift, icon inversion and one-time content entrances remain, with reduced-motion support.
 
 Design reference: [mono-color-skill](https://github.com/yanliudesign/mono-color-skill). The folded-paper illustration was generated for this site from the approved visual concept.
 
@@ -41,7 +43,7 @@ Open `review/Aldrich-FYI-preview.html` in a browser, or send the accompanying `r
 
 Source checks confirm the original 56 translation entries, 24 portfolio entries, three tools and all external links are preserved. Four-language switching works with unavailable browser storage. JavaScript syntax, anchor targets and asset references pass. Motion checks cover one-time entry, changed reduced-motion preferences, cleanup and unavailable observers. Browser visual review is still pending because local HTTP binding and browser automation are unavailable in this session.
 
-Font checks verify the original source Git blob hashes, WOFF2 round trips, coverage of all 57 Latin characters used in the English/French translations, embedded font licenses and offline review-resource packaging. Cover text line boxes retain at least 8.5px clearance from a two-line label at the smallest 200px cover width; this is a layout calculation, not a browser screenshot measurement.
+Font checks from revision four verify the original source Git blob hashes, WOFF2 round trips and coverage of all 57 Latin characters used in the English/French translations; those font assets are unchanged. Revision five checks cover named project links, decorative SVG references, embedded resources and ZIP integrity. Reading-progress logic is checked at the article start, midpoint and page end, with changed content/viewport geometry, overscroll, reduced motion and a single shared animation-frame scheduler. These are source and logic checks, not browser screenshot measurements.
 
 ## Hosting
 

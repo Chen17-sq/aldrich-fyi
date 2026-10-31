@@ -168,6 +168,7 @@ if (colophon && note) {
       note.removeAttribute("hidden");
       colophon.classList.add("is-open");
     }
+    requestFrame();
   });
 }
 
@@ -181,6 +182,7 @@ const mast = document.querySelector('.mast');
 const title = document.querySelector('.nameplate');
 const titleText = document.querySelector('.nameplate-text');
 const bar = document.querySelector('.reading-bar');
+const readingContent = document.getElementById('content');
 const navLinks = [...document.querySelectorAll('.index-nav a')];
 const sections = navLinks.map(link => document.querySelector(link.getAttribute('href')));
 const paper = document.querySelector('.paper-motion');
@@ -209,6 +211,13 @@ function requestFit() { if(!fitScheduled) fitScheduled = requestAnimationFrame(f
 function updateFrame() {
   scheduled = 0;
   const cutoff = bar.offsetHeight + 32;
+  // Reading starts below the sticky rail, then runs to the bottom of the page.
+  const readingStart = Math.max(0,readingContent.getBoundingClientRect().top + window.scrollY - bar.offsetHeight);
+  const readingEnd = Math.max(0,document.documentElement.scrollHeight - window.innerHeight);
+  const readingRange = readingEnd - readingStart;
+  const readingProgress = readingRange > 0
+    ? Math.max(0,Math.min(1,(window.scrollY - readingStart) / readingRange))
+    : Number(window.scrollY >= readingEnd);
   let current = -1;
   sections.forEach((section,index) => { if(section.getBoundingClientRect().top <= cutoff) current = index; });
   if(window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) current = sections.length - 1;
@@ -216,6 +225,7 @@ function updateFrame() {
     if(index === current) link.setAttribute('aria-current','location');
     else link.removeAttribute('aria-current');
   });
+  bar.style.setProperty('--reading-progress',String(readingProgress));
   if(!reducedMotion.matches && mastVisible) {
     const travel = Math.min(12,Math.max(0,window.scrollY / mast.offsetHeight * 12));
     paper.style.setProperty('--paper-x',`${pointerX}px`);

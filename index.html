@@ -186,22 +186,50 @@
       <p class="desk-intro" data-i18n="desk.intro">a few small tools i wrote to stop annoying myself. published in case they stop annoying you, too.</p>
 
       <div class="tool">
-        <div class="project-cover cover-ks" aria-hidden="true"><b>KS</b><span>Kickstarter<br>China Tracker</span></div>
-        <div class="name"><a href="https://ks.aldrich.fyi" target="_blank" rel="noopener">Kickstarter China Tracker</a></div>
+        <a class="project-cover cover-ks" href="https://ks.aldrich.fyi" target="_blank" rel="noopener" aria-labelledby="tool-ks-title">
+          <b aria-hidden="true">KS</b><span aria-hidden="true">Kickstarter<br>China Tracker</span>
+          <svg class="cover-specimen newspaper" viewBox="0 0 180 220" aria-hidden="true" focusable="false">
+            <defs><pattern id="ks-halftone" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="currentColor"/></pattern></defs>
+            <rect class="sheet-back" x="12" y="12" width="160" height="202"/>
+            <g class="sheet-front">
+              <rect class="sheet-paper" x="4" y="4" width="160" height="202"/>
+              <path class="sheet-rule" d="M17 44H151M17 51H151M17 150H151M83 161V192M91 161H151M91 169H151M91 177H142M91 185H151M17 192H73"/>
+              <text x="17" y="34">08:00</text><text class="sheet-zone" x="128" y="32">PEK</text>
+              <circle class="sheet-sun" cx="101" cy="98" r="36" fill="url(#ks-halftone)"/>
+              <path class="sheet-rule" d="M17 80H56M17 88H49M17 96H55M17 104H43M17 124H69M17 132H55"/>
+              <rect class="sheet-block" x="17" y="161" width="56" height="22"/>
+            </g>
+          </svg>
+        </a>
+        <div class="name"><a id="tool-ks-title" href="https://ks.aldrich.fyi" target="_blank" rel="noopener">Kickstarter China Tracker</a></div>
         <div class="desc" data-i18n="ks.desc">a daily newspaper tracking china-origin consumer hardware projects on Kickstarter — pre-launch, live, recently funded. cron at 08:00 Beijing. editorial design.</div>
         <div class="url">→ <a href="https://ks.aldrich.fyi" target="_blank" rel="noopener">ks.aldrich.fyi</a></div>
       </div>
 
       <div class="tool">
-        <div class="project-cover cover-cs" aria-hidden="true"><b>Aa</b><span>clearscript</span></div>
-        <div class="name"><a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">clearscript</a></div>
+        <a class="project-cover cover-cs" href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener" aria-labelledby="tool-cs-title">
+          <b aria-hidden="true">Aa</b><span aria-hidden="true">clearscript</span>
+          <svg class="cover-specimen transcript" viewBox="0 0 150 180" aria-hidden="true" focusable="false">
+            <path class="signal-trace" pathLength="1" d="M8 40H21L26 26 33 60 40 16 48 65 55 31 62 47 68 40H81L87 27 93 53 99 35 105 40H142"/>
+            <g class="transcript-text"><path d="M8 91H142M8 106H113M8 121H132M8 151H95"/><path class="transcript-edit" d="M8 136H64"/><path class="transcript-caret" d="M72 128V144"/></g>
+          </svg>
+        </a>
+        <div class="name"><a id="tool-cs-title" href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">clearscript</a></div>
         <div class="desc" data-i18n="cs.desc">local-first ASR transcript editor with a compounding terminology library. bring your own model. python + sveltekit + sqlite.</div>
         <div class="url">→ <a href="https://github.com/Chen17-sq/clearscript" target="_blank" rel="noopener">github.com/Chen17-sq/clearscript</a></div>
       </div>
 
       <div class="tool">
-        <div class="project-cover cover-op" aria-hidden="true"><b>OP</b><span>OpenPersona</span><svg class="cover-motif" viewBox="0 0 140 140" aria-hidden="true" focusable="false"><path d="M20 108 30 41 84 18 113 62 72 84 112 123M30 41 72 84 84 18M113 62 112 123" fill="none" stroke="currentColor" stroke-width="1"/><g fill="currentColor"><circle cx="20" cy="108" r="5"/><circle cx="30" cy="41" r="5"/><circle cx="84" cy="18" r="5"/><circle cx="113" cy="62" r="5"/><circle cx="72" cy="84" r="6"/><circle cx="112" cy="123" r="5"/></g></svg></div>
-        <div class="name"><a href="https://github.com/Chen17-sq/OpenPersona" target="_blank" rel="noopener">OpenPersona</a></div>
+        <a class="project-cover cover-op" href="https://github.com/Chen17-sq/OpenPersona" target="_blank" rel="noopener" aria-labelledby="tool-op-title">
+          <b aria-hidden="true">OP</b><span aria-hidden="true">OpenPersona</span>
+          <svg class="cover-specimen memory-graph" viewBox="0 0 180 200" aria-hidden="true" focusable="false">
+            <g class="memory-orbits"><circle cx="93" cy="104" r="57"/><circle cx="93" cy="104" r="83"/></g>
+            <path class="memory-edges" pathLength="1" d="M18 151 36 57 107 23 157 78 93 104 147 172M36 57 93 104 107 23M157 78 147 172 18 151 93 104"/>
+            <g class="memory-nodes"><circle cx="18" cy="151" r="4"/><circle cx="36" cy="57" r="5"/><circle cx="107" cy="23" r="4"/><circle cx="157" cy="78" r="5"/><circle cx="147" cy="172" r="4"/></g>
+            <circle class="memory-core" cx="93" cy="104" r="10"/>
+          </svg>
+        </a>
+        <div class="name"><a id="tool-op-title" href="https://github.com/Chen17-sq/OpenPersona" target="_blank" rel="noopener">OpenPersona</a></div>
         <div class="desc" data-i18n="op.desc">your AI memory, owned by you. local-first persona graph extracted from real conversations — imessage, wechat, calendar — exposed via mcp for any agent. python + sqlite + sveltekit. private alpha.</div>
         <div class="url">→ <a href="https://github.com/Chen17-sq/OpenPersona" target="_blank" rel="noopener">github.com/Chen17-sq/OpenPersona</a></div>
       </div>
@@ -214,8 +242,11 @@
   <footer class="foot-wrap" id="contact">
     <div class="footer-paper" aria-hidden="true"><img src="assets/folded-paper.png" alt="" width="1448" height="1086" loading="lazy" decoding="async"></div>
     <p class="credo" data-i18n="credo"><span class="credo-head">"Non-Consensus Explorer &amp; Dreamer,</span><span class="credo-tail"> fueled by pure curiosity and genuine passion."</span></p>
+    <div class="contact-line">
+      <span data-i18n="nav.contact">Say hello</span>
+      <a href="mailto:hi@aldrich.fyi">hi@aldrich.fyi<span aria-hidden="true">↗</span></a>
+    </div>
     <div class="links">
-      <a href="mailto:hi@aldrich.fyi">hi@aldrich.fyi</a>
       <a href="https://www.linkedin.com/in/aldrich17siqi/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/Chen17-sq" target="_blank" rel="noopener">GitHub</a>
       <span data-i18n="wechat">WeChat: 18574843907</span>
