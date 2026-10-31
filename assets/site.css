@@ -8,14 +8,18 @@
   --n500: var(--ink);
   --n600: var(--ink);
   --n700: var(--ink);
-  --font-display: "Bodoni Moda", "Bodoni MT", Didot, "Songti SC", serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Bodoni Moda", Didot, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  --font-body: "Inter", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --gutter: clamp(28px, 5vw, 72px);
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
 
 * { box-sizing: border-box; }
-html { scroll-padding-top: calc(var(--bar-height, 76px) + 20px); }
+html { scroll-padding-top: calc(var(--bar-height, 76px) + 20px); font-optical-sizing: auto; font-kerning: normal; font-synthesis: none; }
+html[lang="zh-TW"] {
+  --font-display: "Bodoni Moda", Didot, "Songti TC", "Noto Serif CJK TC", "PMingLiU", serif;
+  --font-body: "Inter", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", -apple-system, BlinkMacSystemFont, sans-serif;
+}
 body {
   margin: 0;
   background: var(--paper);

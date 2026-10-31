@@ -9,13 +9,13 @@
 .editorial-intro .section-h { display: block; margin: 0; }
 .editorial-intro .section-h .label, .editorial-intro .section-h .rule { display: none; }
 .editorial-intro .lede .dek { max-width: 34ch; font: 400 clamp(22px, 2vw, 27px)/1.45 var(--font-display); letter-spacing: -.015em; }
-.editorial-intro .lede-invitation { max-width: 22ch; margin: 30px 0 0; font: 500 clamp(27px, 2.5vw, 36px)/1.27 var(--font-body); letter-spacing: -.045em; }
+.editorial-intro .lede-invitation { max-width: 22ch; margin: 30px 0 0; font: 500 clamp(27px, 2.7vw, 39px)/1.28 var(--font-body); letter-spacing: -.025em; }
 .editorial-intro .lede-invitation::before { content: ""; display: block; width: 30px; height: 1px; margin-bottom: 24px; background: var(--accent); }
 .invitation-main { display: block; }
 .invitation-tail { display: block; margin-top: 18px; font: 400 13px/1.75 var(--font-body); letter-spacing: 0; }
 .editorial-intro #cities .section-body > p { max-width: 30ch; margin: 0; font-size: 13px; line-height: 1.8; }
 .editorial-intro .tri { margin: 0; }
-.editorial-intro .tri li { margin: 0; padding: 0; border: 0; font: 400 15px/1.65 var(--font-body); letter-spacing: -.015em; }
+.editorial-intro .tri li { margin: 0; padding: 0; border: 0; font: 400 15px/1.7 var(--font-body); letter-spacing: 0; }
 .editorial-intro .tri li + li { margin-top: 20px; }
 .editorial-intro .tri li + li::before { content: ""; display: block; width: 18px; height: 1px; margin-bottom: 15px; background: var(--accent); }
 .editorial-intro .aside { margin-top: 25px; font-size: 12px; line-height: 1.75; }
@@ -35,16 +35,17 @@
 /* Large chapter titles share a baseline with their rule and folio number. */
 .article > section[id] { display: block; margin: 0; padding: 0; border: 0; }
 .article > section[id] > .section-h { display: flex; align-items: baseline; gap: 22px; margin: 0 0 42px; }
-.article > section[id] > .section-h h2 { order: 1; min-width: 0; margin: 0; font: 400 clamp(42px, 5.7vw, 80px)/1.08 var(--font-display); letter-spacing: -.055em; }
+.article > section[id] > .section-h h2 { order: 1; min-width: 0; margin: 0; font: 400 clamp(52px, 7.8vw, 112px)/1.08 var(--font-display); letter-spacing: -.045em; text-wrap: balance; }
 .article > section[id] > .section-h .rule { order: 2; display: block; flex: 1; min-width: 24px; height: 1px; align-self: baseline; background: var(--ink); }
-.article > section[id] > .section-h .label { order: 3; flex: 0 0 auto; margin: 0; font: 400 22px/1 var(--font-display); letter-spacing: -.015em; }
+.article > section[id] > .section-h .label { order: 3; flex: 0 0 auto; margin: 0; color: var(--accent); font: 400 22px/1 var(--font-display); letter-spacing: 0; }
 .article > #desk { margin-top: 82px; }
 
 /* Firms are the left index; the entries are an open ruled directory. */
 #portfolio .firm-block { display: grid; grid-template-columns: clamp(180px, 15vw, 220px) minmax(0, 1fr); gap: 32px; }
 #portfolio .firm-block + .firm-block { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line-strong); }
 #portfolio .firm-head { display: block; margin: 0; padding: 0; }
-#portfolio .firm-name { display: block; font: 500 22px/1.35 var(--font-body); letter-spacing: -.035em; }
+#portfolio .firm-head::before { content: ""; display: block; width: 24px; height: 1px; margin: 0 0 15px; background: var(--accent); }
+#portfolio .firm-name { display: block; font: 500 24px/1.35 var(--font-body); letter-spacing: -.015em; }
 #portfolio .firm-meta { display: block; max-width: 24ch; margin-top: 14px; font-size: 11px; line-height: 1.8; }
 #portfolio .firm-entries { min-width: 0; padding-left: 26px; border-left: 1px solid var(--line-strong); }
 #portfolio .tier-label { margin: 0 0 6px; font-size: 11px; letter-spacing: .025em; }
@@ -56,8 +57,14 @@
 #portfolio .plate:nth-child(3n) { padding-right: 0; }
 #portfolio .ico { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; margin-bottom: 12px; border: 0; color: var(--ink); background: transparent; transition: background-color 220ms ease, color 220ms ease; }
 #portfolio .ico svg { width: 28px; height: 28px; }
-#portfolio .plate .nm { margin: 0 0 9px; font: 500 clamp(20px, 1.55vw, 23px)/1.35 var(--font-body); letter-spacing: -.04em; overflow-wrap: anywhere; }
-#portfolio .plate .desc { margin: 0; font-size: 13px; line-height: 1.7; }
+#portfolio .plate .nm { margin: 0 0 9px; font: 500 clamp(21px, 1.8vw, 26px)/1.32 var(--font-body); letter-spacing: -.015em; overflow-wrap: normal; word-break: normal; }
+#portfolio .plate .desc { margin: 0; font-size: 13px; line-height: 1.75; overflow-wrap: break-word; hyphens: auto; }
+#portfolio .pgrid.lead .plate:not(:nth-child(3n + 1)) { border-left: 1px solid var(--line); }
+#portfolio .pgrid.exec .plate { display: grid; grid-template-columns: 28px minmax(0, 1fr); align-content: start; column-gap: 10px; row-gap: 7px; }
+#portfolio .pgrid.exec .ico { grid-column: 1; grid-row: 1 / 3; width: 28px; height: 28px; margin: 0; }
+#portfolio .pgrid.exec .ico svg { width: 22px; height: 22px; }
+#portfolio .pgrid.exec .nm { grid-column: 2; grid-row: 1; margin: 0; font-size: 18px; line-height: 1.45; }
+#portfolio .pgrid.exec .desc { grid-column: 2; grid-row: 2; font-size: 13px; }
 #portfolio .plate:only-child { grid-template-columns: 36px minmax(0, 1fr); gap: 7px 16px; align-items: start; padding-right: 0; }
 #portfolio .plate:only-child .ico { margin: 0; }
 #portfolio .plate:only-child .nm { margin: 0; }
@@ -71,20 +78,21 @@
 
 /* Three project specimens, each with a different two-ink cover. */
 #desk .desk-intro { max-width: 70ch; margin-bottom: 24px; font-size: 14px; }
-#desk .tool { position: relative; display: grid; grid-template-columns: clamp(220px, 22vw, 280px) minmax(0, 1fr) 32px; column-gap: 34px; row-gap: 10px; align-items: start; padding: 26px 0; border: 0; border-bottom: 1px solid var(--line-strong); background: none; box-shadow: none; }
+#desk .tool { position: relative; display: grid; grid-template-columns: clamp(240px, 27vw, 360px) minmax(0, 1fr) 32px; column-gap: 40px; row-gap: 10px; align-items: start; padding: 32px 0; border: 0; border-bottom: 1px solid var(--line-strong); background: none; box-shadow: none; }
 #desk .tool::before { display: none; }
 #desk .tool::after { grid-column: 3; grid-row: 1; padding-top: 8px; font-size: 26px; transition: transform 220ms var(--ease); }
-#desk .tool .name { grid-column: 2; grid-row: 1; min-width: 0; font: 500 32px/1.25 var(--font-body); letter-spacing: -.045em; }
+#desk .tool .name { grid-column: 2; grid-row: 1; min-width: 0; font: 500 32px/1.3 var(--font-body); letter-spacing: -.015em; }
 #desk .tool .desc { grid-column: 2; grid-row: 2; max-width: 68ch; font-size: 14px; line-height: 1.75; }
 #desk .tool .url { grid-column: 2; grid-row: 3; font-size: 12px; }
 #desk .tool .name a { text-decoration: none; }
 #desk .tool .name a:hover { text-decoration: underline; }
 #desk .tool:focus-within::after { transform: translate(3px, -3px); }
 .article :is(.aside, .name, .url) a { display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; max-width: 100%; }
-@media (hover: hover) and (pointer: fine) { #desk .tool:hover::after { transform: translate(3px, -3px); } }
-.project-cover { position: relative; isolation: isolate; grid-column: 1; grid-row: 1 / 4; width: 100%; aspect-ratio: 1.65; overflow: hidden; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
-.project-cover > b { position: absolute; z-index: 2; top: 7%; left: 7%; font: 400 clamp(74px, 7vw, 108px)/.95 var(--font-display); letter-spacing: -.065em; }
-.project-cover > span { position: absolute; z-index: 2; left: 8%; bottom: 9%; max-width: 52%; font: 500 8px/1.55 var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
+@media (hover: hover) and (pointer: fine) { #desk .tool:hover::after { transform: translate(3px, -3px); } #desk .tool:hover .project-cover { transform: translateY(-2px) rotate(-.6deg); } }
+.project-cover { position: relative; isolation: isolate; container-type: inline-size; grid-column: 1; grid-row: 1 / 4; width: 100%; aspect-ratio: 1.65; overflow: hidden; border: 1px solid var(--line); background: var(--paper); color: var(--ink); transition: transform 350ms var(--ease); }
+.project-cover > b { position: absolute; z-index: 2; top: 7%; left: 7%; font: 400 var(--cover-type, 72px)/.95 var(--font-display); letter-spacing: -.045em; }
+.project-cover > span { position: absolute; z-index: 2; left: 8%; bottom: 8%; max-width: 54%; font: 500 9px/1.45 var(--font-body); letter-spacing: .045em; text-transform: uppercase; }
+@supports (font-size: 1cqw) { .project-cover { --cover-type: 36cqw; } .project-cover > span { font-size: clamp(9px, 2.8cqw, 11px); } }
 .project-cover .cover-motif { position: absolute; z-index: 1; right: 1%; top: 7%; width: 49%; height: 86%; color: var(--accent); }
 .cover-ks::after { content: ""; position: absolute; z-index: 0; right: -1%; top: 8%; width: 57%; aspect-ratio: 1; border-radius: 50%; background-image: radial-gradient(circle, var(--accent) .7px, transparent 1.05px); background-size: 3px 3px; -webkit-mask-image: radial-gradient(circle, #000 12%, transparent 71%); mask-image: radial-gradient(circle, #000 12%, transparent 71%); }
 .cover-ks .cover-motif { opacity: .35; }
@@ -97,7 +105,7 @@
 
 /* A paper coda, aligned with the index and never boxed off. */
 .foot-wrap { position: relative; isolation: isolate; margin-inline: var(--gutter); padding: 26px 0 30px; border-top: 0; color: var(--ink); background: var(--paper); }
-.foot-wrap .credo { position: relative; z-index: 2; max-width: 22ch; margin: 0 0 32px; font: 400 clamp(38px, 5.3vw, 68px)/1.08 var(--font-display); letter-spacing: -.045em; text-wrap: balance; }
+.foot-wrap .credo { position: relative; z-index: 2; max-width: 22ch; margin: 0 0 40px; font: 400 clamp(44px, 6.7vw, 96px)/1.08 var(--font-display); letter-spacing: -.035em; text-wrap: balance; }
 .credo-head { display: block; font: inherit; letter-spacing: inherit; }
 .credo-tail { display: block; max-width: 56ch; margin-top: 20px; font: 400 14px/1.7 var(--font-body); letter-spacing: 0; text-wrap: pretty; }
 .footer-paper { position: absolute; z-index: 0; right: calc(-1 * var(--gutter)); bottom: 110px; width: 35%; mix-blend-mode: multiply; pointer-events: none; user-select: none; }
@@ -126,13 +134,13 @@
   #portfolio .firm-block { grid-template-columns: 180px minmax(0, 1fr); gap: 26px; }
   #portfolio .firm-entries { padding-left: 22px; }
   #portfolio .plate { padding-inline: 12px; }
-  #portfolio .plate .nm { font-size: 20px; }
+  #portfolio .plate .nm { font-size: 21px; }
   #desk .tool { column-gap: 26px; grid-template-columns: 230px minmax(0, 1fr) 28px; }
   #desk .tool .name { font-size: 29px; }
 }
 @media (max-width: 900px) {
   .editorial-intro { grid-template-columns: 1fr 1fr; padding: 42px 0 56px; }
-  .editorial-intro .lede { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin-bottom: 30px; padding: 0 0 34px; border-bottom: 1px solid var(--line); }
+  .editorial-intro > section.lede { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin-bottom: 30px; padding: 0 0 34px; border-bottom: 1px solid var(--line); }
   .editorial-intro .intro-label { grid-column: 1 / -1; }
   .editorial-intro .lede .dek { grid-column: 1; }
   .editorial-intro .lede-invitation { grid-column: 2; margin: 0; font-size: 29px; }
@@ -144,6 +152,12 @@
   #portfolio .firm-block { grid-template-columns: 155px minmax(0, 1fr); gap: 22px; }
   #portfolio .firm-entries { padding-left: 20px; }
   #portfolio .firm-name { font-size: 20px; }
+  #portfolio .pgrid.lead, #portfolio .pgrid.exec { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #portfolio .plate:nth-child(n) { padding-inline: 12px; }
+  #portfolio .plate:nth-child(odd) { padding-left: 0; }
+  #portfolio .plate:nth-child(even) { padding-right: 0; }
+  #portfolio .pgrid.lead .plate:nth-child(n) { border-left: 0; }
+  #portfolio .pgrid.lead .plate:nth-child(even) { border-left: 1px solid var(--line); }
   #portfolio .plate .nm { font-size: 19px; }
   #portfolio .plate .desc { font-size: 12px; }
   .article > #desk { margin-top: 64px; }
@@ -156,16 +170,16 @@
 @media (max-width: 760px) {
   #portfolio .firm-block { grid-template-columns: 1fr; gap: 22px; }
   #portfolio .firm-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px 28px; }
+  #portfolio .firm-head::before { display: none; }
   #portfolio .firm-name { max-width: 18ch; }
   #portfolio .firm-meta { margin: 0; max-width: 34ch; }
   #portfolio .firm-entries { padding-left: 0; border-left: 0; }
   #desk .tool { grid-template-columns: 200px minmax(0, 1fr) 22px; column-gap: 20px; }
-  .project-cover > b { font-size: 78px; }
 }
 @media (max-width: 600px) {
   .article { padding-bottom: 50px; }
   .editorial-intro { display: block; padding: 36px 0 48px; }
-  .editorial-intro .lede { display: block; margin: 0; padding: 0; border: 0; }
+  .editorial-intro > section.lede { display: block; margin: 0; padding: 0; border: 0; }
   .editorial-intro .lede .dek { max-width: 35ch; font-size: 25px; }
   .editorial-intro .lede-invitation { max-width: 24ch; margin-top: 24px; font-size: 29px; }
   .editorial-intro .lede-invitation::before { display: block; margin-bottom: 20px; }
@@ -186,6 +200,8 @@
   #portfolio .firm-meta { margin-top: 8px; font-size: 11px; }
   #portfolio .firm-block + .firm-block { margin-top: 32px; padding-top: 26px; }
   #portfolio .pgrid.lead, #portfolio .pgrid.exec { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #portfolio .pgrid.exec { grid-template-columns: 1fr; }
+  #portfolio .pgrid.exec .plate:nth-child(n) { padding-inline: 0; }
   #portfolio .plate { padding: 20px 12px 22px; }
   #portfolio .plate:nth-child(3n + 1) { padding-left: 12px; }
   #portfolio .plate:nth-child(3n) { padding-right: 12px; }
@@ -198,8 +214,6 @@
   #desk .desk-intro { font-size: 14px; }
   #desk .tool { grid-template-columns: minmax(0, 1fr) 28px; gap: 12px 16px; padding: 24px 0 28px; }
   #desk .project-cover { grid-column: 1 / -1; grid-row: 1; width: 100%; margin-bottom: 8px; }
-  .project-cover > b { font-size: clamp(108px, 25vw, 150px); }
-  .project-cover > span { font-size: 10px; }
   #desk .tool .name { grid-column: 1; grid-row: 2; font-size: 29px; }
   #desk .tool::after { grid-column: 2; grid-row: 2; }
   #desk .tool .desc { grid-column: 1 / -1; grid-row: 3; font-size: 14px; }
@@ -216,6 +230,7 @@
   .article > section[id] > .section-h h2 { font-size: 40px; }
   .article > section[id] > .section-h .rule { min-width: 8px; }
   #portfolio .pgrid.lead, #portfolio .pgrid.exec { grid-template-columns: 1fr; }
+  #portfolio .pgrid.lead .plate:nth-child(n) { border-left: 0; }
   #portfolio .plate, #portfolio .plate:nth-child(n) { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 6px 14px; padding: 20px 0; }
   #portfolio .plate .ico { grid-column: 1; grid-row: 1 / 3; margin: 0; }
   #portfolio .plate .nm, #portfolio .plate .desc { grid-column: 2; margin: 0; }
@@ -227,13 +242,28 @@
   [data-enter="true"], .foot-wrap .editors-note:not([hidden]) { animation: none !important; opacity: 1; translate: none; }
   #portfolio .plate, #portfolio .plate:hover, #desk .tool::after, #desk .tool:hover::after, #desk .tool:focus-within::after { transform: none; transition: none; }
   .route-line::after { animation: none !important; opacity: 0; }
+  #desk .tool .project-cover, #desk .tool:hover .project-cover, #desk .tool:focus-within .project-cover { transform: none; transition: none; }
 }
+
+/* CJK gets its own spacing; the Latin masthead and printed initials stay Latin. */
+html:lang(zh) .tagline,
+html:lang(zh) .editorial-intro .lede-invitation,
+html:lang(zh) .article > section[id] > .section-h h2,
+html:lang(zh) #portfolio .plate .nm,
+html:lang(zh) #portfolio .firm-name,
+html:lang(zh) #desk .tool .name,
+html:lang(zh) .foot-wrap .credo { letter-spacing: 0; line-height: 1.2; }
+html:lang(zh) .editorial-intro .lede .dek { font-family: var(--font-body); font-size: 18px; line-height: 1.85; letter-spacing: 0; }
+html:lang(zh) .article :is(.desc, .aside, .tri li, .firm-meta) { letter-spacing: 0; line-height: 1.85; }
+html:lang(zh) .intro-label, html:lang(zh) .editorial-intro .section-h h2 { letter-spacing: .04em; }
+html:lang(zh) .invitation-tail, html:lang(zh) .credo-tail { line-height: 1.85; }
+
 @media print {
   [data-enter="true"] { animation: none !important; opacity: 1 !important; translate: none !important; }
   .article { padding: 0; }
   .editorial-intro { display: block; padding: 20px 0 26px; }
   .editorial-intro > section, .editorial-intro > section + section, .editorial-intro > #cities, .editorial-intro > #drawn { display: block; margin: 0 0 18px; padding: 0; border: 0; }
-  .editorial-intro .lede { display: block; margin-bottom: 18px; padding: 0; border: 0; }
+  .editorial-intro > section.lede { display: block; margin-bottom: 18px; padding: 0; border: 0; }
   .intro-label, .editorial-intro .section-h h2 { font-size: 10pt; margin-bottom: 10px; }
   .editorial-intro .lede .dek { max-width: none; font-size: 14pt; }
   .editorial-intro .lede-invitation { max-width: none; margin-top: 12px; font-size: 15pt; }
@@ -255,9 +285,14 @@
   #portfolio .ico { display: none; }
   #portfolio .plate .nm { font-size: 11pt; }
   #portfolio .plate .desc { font-size: 8pt; }
+  #portfolio .pgrid.lead .plate:nth-child(n) { border-left: 0; }
+  #portfolio .pgrid.exec .plate { display: block; }
+  #portfolio .pgrid.exec .ico { display: none; }
+  #portfolio .pgrid.exec .nm { font-size: 11pt; margin-bottom: 6px; }
+  #portfolio .pgrid.exec .desc { font-size: 8pt; }
   #desk .tool { grid-template-columns: 135px minmax(0, 1fr) 18px; gap: 7px 20px; padding: 18px 0; break-inside: avoid; }
   #desk .project-cover { display: block; grid-column: 1; grid-row: 1 / 4; margin: 0; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  .project-cover > b { font-size: 50pt; }
+  .project-cover > b { font-size: 32pt; }
   .project-cover > span { font-size: 5pt; }
   #desk .tool .name { grid-column: 2; grid-row: 1; font-size: 16pt; }
   #desk .tool::after { grid-column: 3; grid-row: 1; }

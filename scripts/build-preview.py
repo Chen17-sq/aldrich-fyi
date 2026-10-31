@@ -10,9 +10,16 @@ js = (root / 'assets/site.js').read_text()
 image = b64encode((root / 'assets/folded-paper.png').read_bytes()).decode('ascii')
 
 assert '</script' not in js.lower()
-for stylesheet in ['site.css', 'content.css']:
+for stylesheet in ['fonts.css', 'site.css', 'content.css']:
     css = (root / 'assets' / stylesheet).read_text()
     assert '</style' not in css.lower()
+    if stylesheet == 'fonts.css':
+        for font in ['BodoniModa', 'Inter']:
+            encoded = b64encode((root / 'assets/fonts' / f'{font}.woff2').read_bytes()).decode('ascii')
+            css = css.replace(f'fonts/{font}.woff2', f'data:font/woff2;base64,{encoded}')
+            license_text = (root / 'assets/fonts' / f'{font}-OFL.txt').read_text()
+            assert '*/' not in license_text
+            css += f'\n/* {font} license\n{license_text}\n*/\n'
     html = html.replace(f'<link rel="stylesheet" href="assets/{stylesheet}">', f'<style>\n{css}\n</style>')
 html = html.replace('src="assets/folded-paper.png"', f'src="data:image/png;base64,{image}"')
 html = html.replace('<script src="assets/site.js" defer></script>', f'<script>\n{js}\n</script>')
@@ -27,11 +34,11 @@ archive = output.with_suffix('.zip')
 with ZipFile(archive, 'w', ZIP_DEFLATED) as package:
     package.write(output, output.name)
     package.writestr('READ-ME.txt',
-        'Aldrich FYI — 第三版预览\n\n'
+        'Aldrich FYI — 第四版预览\n\n'
         '解压后，用 Chrome 或 Safari 打开 Aldrich-FYI-preview.html。\n'
         '图片、样式和脚本都已包含在 HTML 中，无需安装。\n'
-        '联网时会加载设计字体；离线时使用系统字体。\n\n'
-        '本版按认可的整页视觉方向重排：三栏介绍、开放投资目录、三个工具封面和折页结尾。\n'
+        'Bodoni Moda 和 Inter 字体已包含在 HTML 内，离线也可使用；中文使用对应系统字体。\n\n'
+        '本版强化章标题和投资层级，校正中英字距、平板列宽、项目封面比例和长标题断行。\n'
         '保留原始24个项目、3个工具、年份、项目归属和四语内容；保留卡片和滚动动效。\n'
         '如系统开启「减少动态效果」，位移动效会关闭。\n\n'
         '此文件仅供确认设计，aldrich.fyi 线上未更新。\n')
