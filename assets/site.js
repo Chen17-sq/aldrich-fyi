@@ -219,7 +219,20 @@ function updateFrame() {
     ? Math.max(0,Math.min(1,(window.scrollY - readingStart) / readingRange))
     : Number(window.scrollY >= readingEnd);
   let current = -1;
-  sections.forEach((section,index) => { if(section.getBoundingClientRect().top <= cutoff) current = index; });
+  let currentTop = -Infinity;
+  const requestedAnchor = window.location?.hash;
+  sections.forEach((section,index) => {
+    const top = section.getBoundingClientRect().top;
+    if(top > cutoff) return;
+    if(top > currentTop + 2) {
+      current = index;
+      currentTop = top;
+    } else if(Math.abs(top - currentTop) <= 2 && navLinks[index].getAttribute('href') === requestedAnchor) {
+      // Adjacent introduction columns share a baseline on desktop. Keep the
+      // explicitly requested column active instead of always selecting the last.
+      current = index;
+    }
+  });
   if(window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) current = sections.length - 1;
   navLinks.forEach((link,index) => {
     if(index === current) link.setAttribute('aria-current','location');
@@ -254,6 +267,7 @@ if('IntersectionObserver' in window) new IntersectionObserver(entries => {
   if(mastVisible) requestFrame();
 }).observe(mast);
 window.addEventListener('scroll',requestFrame,{passive:true});
+window.addEventListener('hashchange',requestFrame);
 window.addEventListener('resize',requestFit,{passive:true});
 window.addEventListener('load',requestFit);
 document.fonts?.ready.then(requestFit);
@@ -283,8 +297,12 @@ function enterContent(element) {
   entered.add(element);
   if(reducedMotion.matches) return;
   const siblings = [...element.parentElement.children];
-  const delay = element.matches('.plate, .tri li, .lede > p')
-    ? Math.min(2,siblings.indexOf(element) % 3) * 65 : 0;
+  // Use layout offsets, not animated client rects. Single-column lists enter
+  // immediately; only items sharing an actual grid row receive a short stagger.
+  const peers = element.matches('.plate')
+    ? siblings.filter(sibling => sibling.matches('.plate') && Math.abs(sibling.offsetTop - element.offsetTop) < 2)
+    : element.matches('.lede > p') ? siblings.filter(sibling => sibling.matches('.lede > p')) : [element];
+  const delay = Math.max(0,Math.min(2,peers.indexOf(element))) * 55;
   element.style.setProperty('--enter-delay',`${delay}ms`);
   element.setAttribute('data-enter','true');
   // Keep the route gesture alive for its full duration, then release transforms
