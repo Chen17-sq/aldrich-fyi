@@ -6,7 +6,7 @@ Production: https://aldrich.fyi
 
 ## Design preview
 
-The `design/mono-color-20261031` branch implements the approved blue-and-terracotta folded-paper direction. **This is a review version; do not push to the production branch or deploy until Aldrich explicitly confirms it.**
+The `design/mono-color-20261031` branch implements the approved blue-and-terracotta folded-paper direction. **Aldrich approved publication of the sixth revision on October 31, 2026.** The branch retains the local review history.
 
 - Bodoni Moda display type and Inter text on a neutral-white canvas.
 - Cobalt `#2148B8`, terracotta `#C65F38`, paper `#FAFAF7`.
@@ -53,4 +53,4 @@ Font checks from revision four verify the original source Git blob hashes, WOFF2
 
 ## Hosting
 
-Cloudflare Pages serves this static repository. Production follows `main`; the design branch has not been published. See `DEPLOY.md` for the existing hosting configuration.
+Cloudflare Pages serves this static repository. Production follows `main`; the approved sixth revision is published from its tracked source files. Review HTML/ZIP files stay outside Git. See `DEPLOY.md` for the existing hosting configuration.
