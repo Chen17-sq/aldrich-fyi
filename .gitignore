@@ -10,3 +10,4 @@ node_modules/
 
 # Generated, self-contained review copy. Rebuild with scripts/build-preview.py.
 /review/*.html
+/review/*.zip

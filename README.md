@@ -14,12 +14,15 @@ The `design/mono-color-20261031` branch implements the approved blue-and-terraco
 - All 24 portfolio entries, three tools, contact links, and four original languages retained.
 - Brief entrance transitions and restrained paper movement; reduced-motion preferences respected.
 
+The second review revision restores portfolio-card lift and icon inversion, tool-link feedback and the editor-note entrance. Content enters once while scrolling without depending on JavaScript for visibility. Lower-page backgrounds vary between pale-blue grid paper, warm paper and a cobalt footer, with a decorative Beijing–Shenzhen route and restrained halftone accents.
+
 Design reference: [mono-color-skill](https://github.com/yanliudesign/mono-color-skill). The folded-paper illustration was generated for this site from the approved visual concept.
 
 ## Files
 
 - `index.html` — content and semantic structure.
 - `assets/site.css` — typography, layout, responsive behavior and motion.
+- `assets/content.css` — lower-page backgrounds, portfolio interactions and section entrances.
 - `assets/site.js` — translations, navigation state and small interactions.
 - `assets/folded-paper.png` — transparent decorative illustration.
 
@@ -31,11 +34,11 @@ For a single-file review copy with the artwork, CSS and JavaScript embedded:
 python3 scripts/build-preview.py
 ```
 
-Open `review/Aldrich-FYI-preview.html` in a browser. The generated review file is ignored by Git. Its content comes directly from the website source.
+Open `review/Aldrich-FYI-preview.html` in a browser, or send the accompanying `review/Aldrich-FYI-preview.zip`. Generated review files are ignored by Git. Their content comes directly from the website source.
 
 ## Validation
 
-Source checks confirm the original 56 translation entries, 24 portfolio entries, three tools and all external links are preserved. Four-language switching works with unavailable browser storage. JavaScript syntax, anchor targets and asset references pass. Browser visual review is still pending because local HTTP binding and browser automation are unavailable in this session.
+Source checks confirm the original 56 translation entries, 24 portfolio entries, three tools and all external links are preserved. Four-language switching works with unavailable browser storage. JavaScript syntax, anchor targets and asset references pass. Motion checks cover one-time entry, changed reduced-motion preferences, cleanup and unavailable observers. Browser visual review is still pending because local HTTP binding and browser automation are unavailable in this session.
 
 ## Hosting
 

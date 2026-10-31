@@ -236,3 +236,52 @@ if('ResizeObserver' in window) new ResizeObserver(() => {
   requestFrame();
 }).observe(bar);
 requestFit();
+
+// Enter once, as each part of the article comes into view. Content is readable
+// before JavaScript runs and when observers or animations are unavailable.
+const enterTargets = [...document.querySelectorAll(
+  '.lede > p, .section-h, .city-route, .tri li, .plate, .tool, .foot-wrap .credo'
+)];
+const entered = new WeakSet();
+const entryTimers = new Map();
+let entryObserver;
+
+function clearEntry(element) {
+  clearTimeout(entryTimers.get(element));
+  entryTimers.delete(element);
+  element.removeAttribute('data-enter');
+  element.style.removeProperty('--enter-delay');
+}
+function enterContent(element) {
+  if(entered.has(element)) return;
+  entered.add(element);
+  if(reducedMotion.matches) return;
+  const siblings = [...element.parentElement.children];
+  const delay = element.matches('.plate, .tri li, .lede > p')
+    ? Math.min(2,siblings.indexOf(element) % 3) * 65 : 0;
+  element.style.setProperty('--enter-delay',`${delay}ms`);
+  element.setAttribute('data-enter','true');
+  // Keep the route gesture alive for its full duration, then release transforms
+  // so hover, keyboard focus and changed motion settings respond immediately.
+  entryTimers.set(element,setTimeout(() => clearEntry(element),1700 + delay));
+}
+function syncContentMotion() {
+  entryObserver?.disconnect();
+  if(reducedMotion.matches) {
+    [...entryTimers.keys()].forEach(clearEntry);
+    return;
+  }
+  if(!('IntersectionObserver' in window)) return;
+  entryObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      enterContent(entry.target);
+      entryObserver.unobserve(entry.target);
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -24px 0px'});
+  enterTargets.forEach(element => {
+    if(!entered.has(element)) entryObserver.observe(element);
+  });
+}
+reducedMotion.addEventListener('change',syncContentMotion);
+syncContentMotion();
