@@ -9,6 +9,8 @@
 .editorial-intro > section.lede { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; margin: 0 0 36px; padding: 0 0 42px; border-bottom: 1px solid var(--line); }
 .editorial-intro .bio .intro-label { grid-column: 1 / -1; }
 .editorial-intro .bio-paragraph { min-width: 0; margin: 0; font: 400 17px/1.85 var(--font-body); letter-spacing: 0; overflow-wrap: break-word; }
+.editorial-intro .bio-paragraph strong { font-weight: 650; }
+.editorial-intro .bio-paragraph a { text-decoration-line: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
 .editorial-intro > #cities { padding-left: 0; border-left: 0; }
 .intro-label, .editorial-intro .section-h h2 { display: block; margin: 0 0 22px; font: 500 13px/1.5 var(--font-body); letter-spacing: .025em; }
 .editorial-intro .section-h { display: block; margin: 0; }

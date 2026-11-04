@@ -10,6 +10,8 @@ The About section carries the approved two-paragraph introduction in Simplified 
 
 The introduction uses two reading columns on wider screens and stacked paragraphs on phones. Personal and work email addresses have separate labeled `mailto:` links; long addresses can wrap without losing characters. The existing WeChat number, portfolio, tools and masthead animation are retained. Search and sharing descriptions reflect the updated investment focus.
 
+English and French copy has been edited for idiomatic phrasing. All four introductions emphasize the name, investment focus and linked references. Firm and university names link to their official sites, AccSeed+ to its project profile, and the three tool references to their product or repository. The invitation to say hello jumps to the contact section. Links remain visibly underlined, and the same markup is present in the English no-JavaScript fallback.
+
 Browser checks cover all four languages at 1440, 768, 390 and 320 pixels, complete text and email rendering, About navigation state, visible keyboard focus and the no-JavaScript fallback. The approved Chinese text is checked verbatim; existing portfolio translations and all 24 entries and three tools are preserved.
 
 ## Name motion · November 4, 2026
