@@ -193,6 +193,7 @@ let fitScheduled = 0;
 let pointerX = 0;
 let pointerY = 0;
 let mastVisible = true;
+let nameMotion;
 
 function fitTitle() {
   fitScheduled = 0;
@@ -203,6 +204,7 @@ function fitTitle() {
     const base = parseFloat(getComputedStyle(title).fontSize);
     title.style.fontSize = `${Math.min(320,base * available / actual * .985)}px`;
   }
+  nameMotion?.measure();
   document.documentElement.style.setProperty('--bar-height', `${bar.offsetHeight}px`);
   requestFrame();
 }
@@ -276,6 +278,107 @@ if('ResizeObserver' in window) new ResizeObserver(() => {
   requestFrame();
 }).observe(bar);
 requestFit();
+
+// Variable-font proximity: the original text owns layout and accessibility.
+// Range measurements retain Bodoni's kerning; only the decorative glyphs vary.
+function createNameMotion() {
+  const layer = document.createElement('span');
+  layer.className = 'nameplate-letters';
+  layer.setAttribute('aria-hidden','true');
+  const letters = [...titleText.textContent].map(character => {
+    const element = document.createElement('span');
+    element.className = 'nameplate-letter';
+    element.textContent = character;
+    layer.append(element);
+    return {element, x:0, weight:400};
+  });
+  title.append(layer);
+  let frame = 0;
+  let previousTime = 0;
+  let pointer = null;
+  let opening = null;
+  let measured = false;
+  let width = 0;
+
+  function schedule() {
+    if(!frame && !document.hidden && !reducedMotion.matches) frame = requestAnimationFrame(render);
+  }
+  function reset() {
+    cancelAnimationFrame(frame);
+    frame = previousTime = 0;
+    pointer = opening = null;
+    letters.forEach(letter => {
+      letter.weight = 400;
+      letter.element.style.fontWeight = '400';
+    });
+  }
+  function measure() {
+    const textRect = titleText.getBoundingClientRect();
+    const titleRect = title.getBoundingClientRect();
+    const range = document.createRange();
+    let offset = 0;
+    letters.forEach(letter => {
+      range.setStart(titleText.firstChild,offset);
+      offset += letter.element.textContent.length;
+      range.setEnd(titleText.firstChild,offset);
+      const rect = range.getBoundingClientRect();
+      letter.x = rect.left - titleRect.left + rect.width / 2;
+      letter.element.style.left = `${letter.x}px`;
+    });
+    width = textRect.width;
+    title.classList.add('is-variable');
+    if(!measured && !reducedMotion.matches && !document.hidden && titleRect.bottom > 0 && titleRect.top < innerHeight) {
+      opening = performance.now();
+      schedule();
+    }
+    measured = true;
+  }
+  function render(time) {
+    frame = 0;
+    if(document.hidden || reducedMotion.matches || !mastVisible) { reset(); return; }
+    const rect = title.getBoundingClientRect();
+    const radius = Math.max(100,Math.min(220,rect.height * 1.05));
+    const progress = opening === null ? null : (time - opening) / 1250;
+    if(progress !== null && progress >= 1) opening = null;
+    const sweep = progress !== null && progress < 1;
+    const x = sweep ? -radius + progress * (width + radius * 2) : pointer?.x - rect.left;
+    const y = sweep ? 0 : (pointer?.y - rect.top - rect.height / 2);
+    const easing = 1 - Math.exp(-Math.min(64,previousTime ? time - previousTime : 16) / 70);
+    previousTime = time;
+    let unsettled = false;
+    letters.forEach(letter => {
+      const distance = sweep || pointer ? Math.hypot(letter.x - x,y) / radius : 1;
+      const influence = distance < 1 ? (Math.exp(-2 * distance * distance) - Math.exp(-2)) / (1 - Math.exp(-2)) : 0;
+      const target = 400 + influence * (sweep ? 230 : 340);
+      letter.weight += (target - letter.weight) * easing;
+      if(Math.abs(target - letter.weight) < .15) letter.weight = target;
+      else unsettled = true;
+      letter.element.style.fontWeight = letter.weight.toFixed(2);
+    });
+    if(sweep || unsettled) schedule();
+    else previousTime = 0;
+  }
+  mast.addEventListener('pointermove',event => {
+    if(reducedMotion.matches || !finePointer.matches || event.pointerType === 'touch') return;
+    opening = null;
+    pointer = {x:event.clientX,y:event.clientY};
+    schedule();
+  },{passive:true});
+  mast.addEventListener('pointerleave',() => { pointer = null; schedule(); });
+  // Scroll, blur and preference changes must not leave a heavy letter behind.
+  window.addEventListener('scroll',reset,{passive:true});
+  window.addEventListener('blur',reset);
+  window.addEventListener('resize',reset,{passive:true});
+  document.addEventListener('visibilitychange',reset);
+  reducedMotion.addEventListener('change',reset);
+  finePointer.addEventListener('change',reset);
+  return {measure};
+}
+// Measure after the local font has loaded, avoiding fallback-font coordinates.
+Promise.resolve(document.fonts?.ready).then(() => {
+  nameMotion = createNameMotion();
+  requestFit();
+});
 
 // Enter once, as each part of the article comes into view. Content is readable
 // before JavaScript runs and when observers or animations are unavailable.

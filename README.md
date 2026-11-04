@@ -4,6 +4,12 @@ The personal website of **Aldrich Chen / 陈思蕲** — Tech Investor at Hillho
 
 Production: https://aldrich.fyi
 
+## Name motion · November 4, 2026
+
+The masthead now responds to cursor proximity with a smooth, local change in Bodoni Moda's variable weight (400–740). Measured letter centers stay fixed, so the heading does not push adjacent letters or alter the page layout. A short, one-time weight wave introduces the effect on desktop and touch screens.
+
+The original heading remains the sizing and accessible text; decorative glyphs are hidden from assistive technology. Reduced motion and print use the original static heading. Pointer exit restores the resting weight; scrolling, resizing, blur and visibility/preference changes clear the effect. Animation frames stop after the letters settle. No font, dependency or content changes are needed.
+
 ## Design preview
 
 The `design/mono-color-20261031` branch implements the approved blue-and-terracotta folded-paper direction. **Aldrich approved publication of the sixth revision on October 31, 2026.** The branch retains the local review history.
@@ -47,10 +53,10 @@ Open `review/Aldrich-FYI-preview.html` in a browser, or send the accompanying `r
 
 ## Validation
 
-Source checks confirm the original 56 translation entries, 24 portfolio entries, three tools and all external links are preserved. Four-language switching works with unavailable browser storage. JavaScript syntax, anchor targets and asset references pass. Motion checks cover one-time entry, changed reduced-motion preferences, cleanup and unavailable observers. Browser visual review is still pending because local HTTP binding and browser automation are unavailable in this session.
+Source checks confirm the original 56 translation entries, 24 portfolio entries, three tools and all external links are preserved. Four-language switching works with unavailable browser storage. JavaScript syntax, anchor targets and asset references pass. Motion checks cover one-time entry, changed reduced-motion preferences, cleanup and unavailable observers. The current masthead motion was checked in Chromium at 1440px, 390px and 320px: resting typography matches the baseline, hover preserves title and letter-center geometry, edge glyphs remain visible, and mobile has no horizontal overflow. Animation-frame counts return to zero after both the opening wave and hover settle. Motion preference changes restore the static heading.
 
 Font checks from revision four verify the original source Git blob hashes, WOFF2 round trips and coverage of all 57 Latin characters used in the English/French translations; those font assets are unchanged. Revision six checks cover named project links, SVG references, icon outlines, sharing-image dimensions, embedded resources and ZIP integrity. Font-advance calculations inform the narrow-layout fixes. Reading-progress logic is checked at the article start, midpoint and page end, with changed content/viewport geometry, overscroll, reduced motion and a single shared animation-frame scheduler. Additional logic checks cover equal-height navigation targets and one-, two- and three-column entrance staggering. These are source and logic checks, not browser screenshot measurements. Live social-card fetching remains unverified until publication is approved.
 
 ## Hosting
 
-Cloudflare Pages serves this static repository. Production follows `main`; the approved sixth revision is published from its tracked source files. Review HTML/ZIP files stay outside Git. See `DEPLOY.md` for the existing hosting configuration.
+Cloudflare Workers Builds serves this static repository using `wrangler.jsonc`; the GitHub check is `Workers Builds: aldrich-fyi`. Production follows `main`. Review HTML/ZIP files stay outside Git. `DEPLOY.md` contains the older Pages setup instructions and is not the current deployment path.
