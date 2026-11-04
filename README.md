@@ -4,6 +4,14 @@ The personal website of **Aldrich Chen / 陈思蕲** — Tech Investor at Hillho
 
 Production: https://aldrich.fyi
 
+## Personal introduction · November 5, 2026
+
+The About section carries the approved two-paragraph introduction in Simplified Chinese, Traditional Chinese, English and French. It includes the AI2C software/hardware and AI infrastructure focus, HongShan experience, full university name and AccSeed+ background. English remains the first-visit default, with complete HTML content available before JavaScript runs.
+
+The introduction uses two reading columns on wider screens and stacked paragraphs on phones. Personal and work email addresses have separate labeled `mailto:` links; long addresses can wrap without losing characters. The existing WeChat number, portfolio, tools and masthead animation are retained. Search and sharing descriptions reflect the updated investment focus.
+
+Browser checks cover all four languages at 1440, 768, 390 and 320 pixels, complete text and email rendering, About navigation state, visible keyboard focus and the no-JavaScript fallback. The approved Chinese text is checked verbatim; existing portfolio translations and all 24 entries and three tools are preserved.
+
 ## Name motion · November 4, 2026
 
 The masthead now responds to cursor proximity with a smooth, local change in Bodoni Moda's variable weight (400–740). Measured letter centers stay fixed, so the heading does not push adjacent letters or alter the page layout. A short, one-time weight wave introduces the effect on desktop and touch screens.
@@ -53,7 +61,7 @@ Open `review/Aldrich-FYI-preview.html` in a browser, or send the accompanying `r
 
 ## Validation
 
-Source checks confirm the original 56 translation entries, 24 portfolio entries, three tools and all external links are preserved. Four-language switching works with unavailable browser storage. JavaScript syntax, anchor targets and asset references pass. Motion checks cover one-time entry, changed reduced-motion preferences, cleanup and unavailable observers. The current masthead motion was checked in Chromium at 1440px, 390px and 320px: resting typography matches the baseline, hover preserves title and letter-center geometry, edge glyphs remain visible, and mobile has no horizontal overflow. Animation-frame counts return to zero after both the opening wave and hover settle. Motion preference changes restore the static heading.
+Source checks confirm the original portfolio translation entries, 24 portfolio entries, three tools and their external links are preserved. Four-language switching works with unavailable browser storage. JavaScript syntax, anchor targets and asset references pass. Motion checks cover one-time entry, changed reduced-motion preferences, cleanup and unavailable observers. The current masthead motion was checked in Chromium at 1440px, 390px and 320px: resting typography matches the baseline, hover preserves title and letter-center geometry, edge glyphs remain visible, and mobile has no horizontal overflow. Animation-frame counts return to zero after both the opening wave and hover settle. Motion preference changes restore the static heading.
 
 Font checks from revision four verify the original source Git blob hashes, WOFF2 round trips and coverage of all 57 Latin characters used in the English/French translations; those font assets are unchanged. Revision six checks cover named project links, SVG references, icon outlines, sharing-image dimensions, embedded resources and ZIP integrity. Font-advance calculations inform the narrow-layout fixes. Reading-progress logic is checked at the article start, midpoint and page end, with changed content/viewport geometry, overscroll, reduced motion and a single shared animation-frame scheduler. Additional logic checks cover equal-height navigation targets and one-, two- and three-column entrance staggering. These are source and logic checks, not browser screenshot measurements. Live social-card fetching remains unverified until publication is approved.
 
